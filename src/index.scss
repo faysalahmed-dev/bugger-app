@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,regular,italic,600,600italic,700,700italic,800,800italic');
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 62.5%;
+}
+body {
+  font-family: Open Sans, sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+}
+button,a {
+  font-family: inherit;
+  font-size: inherit;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 1.3rem
+}
+button:disabled {
+  cursor: not-allowed;
+}

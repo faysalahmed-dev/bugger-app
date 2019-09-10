@@ -1,0 +1,17 @@
+@import '../../../../Sass/mediaQuery';
+.navigation-item {
+     a {
+          text-decoration: none;
+          color: #fff;
+          padding: 1rem;
+          display: block;
+          margin-right: 0;
+          &.active {
+               border-bottom:none;
+               background: tomato;
+          }
+          &.active {
+               border-bottom: 1px solid #000;
+          }
+     }
+}

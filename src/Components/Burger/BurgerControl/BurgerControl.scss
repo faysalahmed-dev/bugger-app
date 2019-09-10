@@ -1,0 +1,29 @@
+.burger-control {
+     width: 90%;
+     max-width: 50rem;
+     margin: auto;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     padding: .7rem 0;
+     &__label {
+          font-size: 1.4rem;
+          color: #fff;
+     }
+     &__button {
+          margin-right: 1rem;
+          width: 80px;
+          height: 35px;
+          border: none;
+          outline: none;
+          background: rgb(255, 187, 0);
+          color: #fff;
+          cursor: pointer;
+          box-shadow: 0 2px 2px rgba(000,000,000,.2);
+          &:disabled {
+               background: rgb(251, 217, 123);
+               opacity: .8;
+               cursor:not-allowed;
+          }
+     }
+}

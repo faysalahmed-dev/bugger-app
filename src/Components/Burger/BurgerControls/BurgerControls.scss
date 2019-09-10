@@ -1,0 +1,33 @@
+.burger {
+	&-controls {
+		width: 100%;
+		background: rgb(158, 123, 40);
+		padding: 2rem 0;
+	}
+	&__price {
+		font-size: 1.6rem;
+		text-align: center;
+		color: #fff;
+		padding: .6rem 0;
+	}
+	&__order-button {
+		font-size: 1.7rem;
+		width: 15rem;
+		height: 5rem;
+		background: rgb(19, 76, 114);
+		color: #fff;
+		border: none;
+		display: block;
+		box-shadow: 0 3px 5px rgba(000, 000, 000, .3);
+		margin: 2rem auto 0;
+		cursor: pointer;
+		transition: all .2s;
+		&:disabled {
+			opacity: .8;
+			background: rgba(55, 146, 206, 0.876);
+		}
+		&:active {
+			transform: scale(.98);
+		}
+	}
+}

@@ -1,0 +1,31 @@
+.button {
+     width: 8rem;
+     height: 3.5rem;
+     box-shadow: 0 3px 5px rgba(0,0,0,.4);
+     border: none;
+     outline: none;
+     cursor: pointer;
+     color: #fff;
+     transition: all .3s;
+     font-size: 1.6rem
+}
+.primary{
+     background: rgb(255, 187, 0);
+}
+.primary:disabled {
+     opacity: .7;
+     background: rgba(255, 188, 2, 0.863);
+}
+.primary:hover {
+     background: rgb(255, 198, 42);
+}
+.secondary{
+     background: rgb(255, 102, 0);
+}
+.secondary:disabled {
+     opacity: .7;
+     background: rgba(255, 102, 0, 0.835);
+}
+.secondary:hover {
+     background: rgba(253, 131, 50, 0.835)
+}

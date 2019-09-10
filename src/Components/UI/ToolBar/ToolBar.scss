@@ -1,0 +1,54 @@
+@import '../../../Sass/mediaQuery';
+@import '../../../Sass/humber';
+$toolbarHeight : 7rem;
+$humbar-size: 4rem;
+$humbar-Height : .4rem;
+.toolbar {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: $toolbarHeight;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background: rgb(197, 158, 29);
+     padding: .5rem 1rem;
+     z-index: 2000;
+	nav {
+          position: fixed;
+          top: $toolbarHeight;
+          left: 0%;
+          background: rgb(250, 197, 24);
+          color: #fff;
+          width: 100%;
+          max-width: 25rem;
+          height: 100%;
+          z-index: 2000;
+          transition: all .5s;
+          transform: translate(-105%);
+     }
+     .checkbox {
+          display: none;
+          &:checked ~ nav {
+               transform: translate(0%);
+          }
+     }
+	.humbar {
+		width: $humbar-size;
+		height: $humbar-size;
+          position: relative;
+          cursor: pointer;
+		div { 
+               @include humbar($humbar-Height,85%);
+			&::before {
+                    content: '';
+				@include humbar((($humbar-size - ($humbar-Height * 3))  / 2));
+			}
+			&::after {
+                    content: '';
+				@include humbar($humbar-size - ($humbar-Height * 3) );
+			}
+		}
+	}
+}

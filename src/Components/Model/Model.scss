@@ -1,0 +1,18 @@
+.model {
+     --width: 400px;
+     --height:320px;
+     max-width: var(--width);
+     height: var(--height);
+     width: 90%;
+     background: #fff;
+     color: rgb(0, 0, 0);
+     padding: 1rem 0;
+     position: fixed;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+     box-shadow: 1rem 1rem 2rem rgba(000,000,000,.4);
+     padding: 1 0;
+     z-index: 10000;
+     transition: all .3s;
+}
