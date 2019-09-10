@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{memo} from 'react';
 import BurgerIng from './BurgerIng/BurgerIng';
 import './Burger.scss';
 const Burger = ({ ingredients }) => {
@@ -13,7 +13,6 @@ const Burger = ({ ingredients }) => {
 	//      return acc.concat(val)
 	// })
 	if (ingredientsTransform.length === 0) ingredientsTransform = <p className="aleart">please add ingredients</p>;
-
 	return (
 		<div className="burger">
 			<BurgerIng type="bread-top" />
@@ -23,4 +22,4 @@ const Burger = ({ ingredients }) => {
 	);
 };
 
-export default Burger;
+export default memo(Burger);

@@ -68,6 +68,7 @@ class BurgerBuilder extends Component {
 		const { ingredients, price, isPurchasable, isPurchasableMode } = this.state;
 		const disabledInfo = { ...this.state.ingredients };
 		for (let key in disabledInfo) disabledInfo[key] = disabledInfo[key] <= 0;
+		
 		return (
 			<Fragment>
                     <Model purchasableMode={isPurchasableMode}

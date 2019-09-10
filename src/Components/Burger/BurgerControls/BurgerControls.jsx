@@ -30,4 +30,4 @@ const BurgerControls = ({ addIngredients, removeIngredients, disabled, price, is
 	);
 };
 
-export default BurgerControls;
+export default React.memo(BurgerControls);
