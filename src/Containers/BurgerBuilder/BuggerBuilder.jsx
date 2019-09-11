@@ -3,6 +3,9 @@ import Burger from '../../Components/Burger/Burger';
 import BurgerControls from '../../Components/Burger/BurgerControls/BurgerControls';
 import Model from '../../Components/Model/Model';
 import OrderSummary from '../../Components/Burger/OrderSummary/OrderSummary';
+import axios from '../../axios/http';
+import Loader from '../../Components/UI/Loader/Loader';
+import withErrorHandler from '../../Hoc/WithErrorHandler/withError';
 
 const PRICE_INGREDIENTS = {
 	cheese: 0.5,
@@ -14,14 +17,15 @@ const PRICE_INGREDIENTS = {
 class BurgerBuilder extends Component {
 	state = {
 		ingredients: {
-			cheese: 0,
-			meat: 0,
-			salad: 0,
-			bacon: 0
+			cheese: 1,
+			meat: 1,
+			salad: 2,
+			bacon: 1
 		},
-		price: 0,
-		isPurchasable: false,
-		isPurchasableMode: false
+		price: 3.1,
+		isPurchasable: true,
+		isPurchasableMode: false,
+		isLoading: false
 	};
 	handlePurchasable = (purchasableInfo) => {
 		const sum = Object.values(purchasableInfo).reduce((acc, val) => {
@@ -58,25 +62,51 @@ class BurgerBuilder extends Component {
 		this.setState({ ingredients: upDateIngredients, price: upDatePrice });
 		this.handlePurchasable(upDateIngredients);
 	};
-     purchasableMode = () => this.setState({ isPurchasableMode: true });
-     
+	purchasableMode = () => this.setState({ isPurchasableMode: true });
+
 	canclePurchasable = () => this.setState({ isPurchasableMode: false });
 
-     continuePurchasable = () => alert('you purchase the burger  price is ' + this.state.price);
+	continuePurchasable = () => {
+		const order = {
+			ingredients: this.state.ingredients,
+			price: this.state.price,
+			customar: {
+				name: 'faysal ahmed',
+				address: 'test address',
+				city: 'chittagong',
+				zipCode: 4000,
+				email: 'faysalahmed146@gmail.com'
+			}
+		};
+		this.setState({ isLoading: true }, () => {
+			axios
+				.post('/orders.json', order)
+				.then(() =>{ 
+					this.setState({ isLoading: false, isPurchasableMode: false })})
+				.catch(() => {
+					this.setState({ isLoading: false, isPurchasableMode: false });
+				});
+		});
+	};
 
 	render() {
-		const { ingredients, price, isPurchasable, isPurchasableMode } = this.state;
+		const { ingredients, price, isPurchasable, isPurchasableMode, isLoading } = this.state;
 		const disabledInfo = { ...this.state.ingredients };
 		for (let key in disabledInfo) disabledInfo[key] = disabledInfo[key] <= 0;
-		
+
 		return (
 			<Fragment>
-                    <Model purchasableMode={isPurchasableMode}
-                         canclePurchase={this.canclePurchasable}>
-                         <OrderSummary ingredients={ingredients} 
-                              canclePurchase={this.canclePurchasable}
-                              continuePurchase={this.continuePurchasable}
-                              price={price}/>
+				<Model show={isPurchasableMode} handleClick={this.canclePurchasable}>
+					{isLoading ? (
+						<Loader />
+					) : (
+						<OrderSummary
+							ingredients={ingredients}
+							canclePurchase={this.canclePurchasable}
+							continuePurchase={this.continuePurchasable}
+							price={price}
+						/>
+					)}
 				</Model>
 				<Burger ingredients={ingredients} />
 				<BurgerControls
@@ -91,4 +121,4 @@ class BurgerBuilder extends Component {
 		);
 	}
 }
-export default BurgerBuilder;
+export default withErrorHandler(BurgerBuilder, axios);

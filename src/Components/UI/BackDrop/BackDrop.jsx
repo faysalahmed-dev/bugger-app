@@ -1,8 +1,8 @@
 import React from 'react'
 import './BackDrop.scss'
 
-const BackDrop = ({ show, canclePurchase }) => show ? 
-               (<div className="back-drop" onClick={canclePurchase}></div>) 
+const BackDrop = ({ show, handleClick }) => show ? 
+               (<div className="back-drop" onClick={handleClick}></div>) 
                : null
 
 export default React.memo(BackDrop);
