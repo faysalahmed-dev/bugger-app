@@ -6,6 +6,7 @@ import OrderSummary from '../../Components/Burger/OrderSummary/OrderSummary';
 import axios from '../../axios/http';
 import Loader from '../../Components/UI/Loader/Loader';
 import withErrorHandler from '../../Hoc/WithErrorHandler/withError';
+import ErrorMes from '../../Util/ErrorMes';
 
 const PRICE_INGREDIENTS = {
 	cheese: 0.5,
@@ -16,16 +17,12 @@ const PRICE_INGREDIENTS = {
 
 class BurgerBuilder extends Component {
 	state = {
-		ingredients: {
-			cheese: 1,
-			meat: 1,
-			salad: 2,
-			bacon: 1
-		},
+		ingredients: null,
 		price: 3.1,
 		isPurchasable: true,
 		isPurchasableMode: false,
-		isLoading: false
+		isLoading: false,
+		error: false
 	};
 	handlePurchasable = (purchasableInfo) => {
 		const sum = Object.values(purchasableInfo).reduce((acc, val) => {
@@ -81,42 +78,58 @@ class BurgerBuilder extends Component {
 		this.setState({ isLoading: true }, () => {
 			axios
 				.post('/orders.json', order)
-				.then(() =>{ 
-					this.setState({ isLoading: false, isPurchasableMode: false })})
+				.then(() => {
+					this.setState({ isLoading: false, isPurchasableMode: false });
+				})
 				.catch(() => {
 					this.setState({ isLoading: false, isPurchasableMode: false });
 				});
 		});
 	};
 
+	componentDidMount() {
+		axios.get('/ingredients.json').then((data) => this.setState({ ingredients: data.data })).catch(() => this.setState({error: true}))
+	}
 	render() {
 		const { ingredients, price, isPurchasable, isPurchasableMode, isLoading } = this.state;
 		const disabledInfo = { ...this.state.ingredients };
-		for (let key in disabledInfo) disabledInfo[key] = disabledInfo[key] <= 0;
-
+		
+		if (this.state.ingredients) {
+			for (let key in disabledInfo) disabledInfo[key] = disabledInfo[key] <= 0;
+		}
 		return (
 			<Fragment>
-				<Model show={isPurchasableMode} handleClick={this.canclePurchasable}>
-					{isLoading ? (
-						<Loader />
-					) : (
-						<OrderSummary
-							ingredients={ingredients}
-							canclePurchase={this.canclePurchasable}
-							continuePurchase={this.continuePurchasable}
+				{this.state.ingredients && (
+					<Model show={isPurchasableMode} handleClick={this.canclePurchasable}>
+						{isLoading ? (
+							<Loader />
+						) : (
+							<OrderSummary
+								ingredients={ingredients}
+								canclePurchase={this.canclePurchasable}
+								continuePurchase={this.continuePurchasable}
+								price={price}
+							/>
+						)}
+					</Model>
+				)}
+				{this.state.ingredients ? (
+					<Fragment>
+						<Burger ingredients={ingredients} /> 
+						<BurgerControls
+							addIngredients={this.addIngredientsHandler}
+							removeIngredients={this.removeIngredientsHandler}
+							disabled={disabledInfo}
 							price={price}
+							isPurchasable={isPurchasable}
+							purchasableMode={this.purchasableMode}
 						/>
-					)}
-				</Model>
-				<Burger ingredients={ingredients} />
-				<BurgerControls
-					addIngredients={this.addIngredientsHandler}
-					removeIngredients={this.removeIngredientsHandler}
-					disabled={disabledInfo}
-					price={price}
-					isPurchasable={isPurchasable}
-					purchasableMode={this.purchasableMode}
-				/>
+					</Fragment>
+				) : 
+					(this.state.error ? 
+						<ErrorMes height={{height:'100vh'}}/>:<Loader setHeight={{ minHeight: '100vh' }}
+						>Burger Is Loading...</Loader>)
+				}
 			</Fragment>
 		);
 	}
