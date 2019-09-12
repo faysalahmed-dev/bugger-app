@@ -1,6 +1,9 @@
 @import '../../../Sass/mediaQuery';
-.navigation{
-     list-style: none;
-     display: block;
-     align-items: center;     
+.navigation {
+	list-style: none;
+	display: block;
+	align-items: center;
+	@include responsive(lg) {
+		display:flex;
+	}
 }

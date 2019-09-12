@@ -1,17 +1,35 @@
 @import '../../../../Sass/mediaQuery';
 .navigation-item {
+     &:not(:last-child) {
+          margin-right: 1rem;
+     }
      a {
           text-decoration: none;
-          color: #fff;
+          color: #e0dfdf;
           padding: 1rem;
           display: block;
           margin-right: 0;
-          &.active {
-               border-bottom:none;
-               background: tomato;
+          position: relative;
+          transition: all .2s;
+          &::before {
+               content: '';
+               position: absolute;
+               bottom: 0;
+               left: 50%;
+               background: #fff;
+               width: 0%;
+               transform:translateX(-50%); 
+               height: 2px;
+               transition: all .2s;
           }
-          &.active {
-               border-bottom: 1px solid #000;
+          &:hover::before {
+               width: 100%; 
+          }
+          &.active{
+              color: #fff;
+              &::before  {
+                   width: 100%;
+              }
           }
      }
 }
