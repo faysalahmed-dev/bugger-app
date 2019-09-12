@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../../UI/Buttton/Button';
+import Button from '../../UI/Button/Button';
 import './OrderSummary.scss';
 
 const OrderSummary = ({ ingredients, canclePurchase, continuePurchase, price }) => {

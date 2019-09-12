@@ -27,6 +27,14 @@ $humbar-Height : .4rem;
           z-index: 2000;
           transition: all .5s;
           transform: translate(-105%);
+          @include responsive(lg) {
+               position: static;
+               background: transparent;
+               width: auto;
+               height: auto;
+               transform: translate(0);
+               padding-right: 3rem;
+          };
      }
      .checkbox {
           display: none;
@@ -39,6 +47,9 @@ $humbar-Height : .4rem;
 		height: $humbar-size;
           position: relative;
           cursor: pointer;
+          @include responsive(lg) {
+               display: none;
+          };
 		div { 
                @include humbar($humbar-Height,85%);
 			&::before {

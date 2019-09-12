@@ -6,16 +6,13 @@ const BurgerIng = ({ type }) => {
 	let ing;
 	switch (type) {
 		case 'bread-top':
-			ing = <div className="bread-top" />;
+			ing = (<div className="bread-top">
+				<div className="seeds1"></div>
+				<div className="seeds2"></div>
+			</div>);
 			break;
 		case 'bread-bottom':
 			ing = <div className="bread-bottom" />;
-			break;
-		case 'seeds1':
-			ing = <div className="seeds1" />;
-			break;
-		case 'seeds2':
-			ing = <div className="seeds2" />;
 			break;
 		case 'meat':
 			ing = <div className="meat" />;

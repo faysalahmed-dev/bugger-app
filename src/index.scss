@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,regular,italic,600,600italic,700,700italic,800,800italic');
+@import './Sass/mediaQuery';
 *{
   padding: 0;
   margin: 0;
@@ -6,6 +7,15 @@
 }
 html {
   font-size: 62.5%;
+  @include responsive(md) {
+    font-size: 68.75%;  
+  };
+  @include responsive(lg) {
+    font-size: 75%;
+  };
+  @include responsive(xl) {
+    font-size: 87.5%;
+  };
 }
 body {
   font-family: Open Sans, sans-serif;
