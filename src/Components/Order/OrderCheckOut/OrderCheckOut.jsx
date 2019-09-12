@@ -1,19 +1,18 @@
 import React from 'react'
-import PropType from 'prop-type'
 import Burger from '../../Burger/Burger'
 import Button from '../../UI/Button/Button';
 
-const orderCheckOut = (props) => {
-     return (
-          <div>
-               <Burger ingredients={props.ingredients}/>
-               <Button onClick={props.handleClick} type="primary">Cancle</Button>
-               <Button onClick={props.handleClick} type="secondary">Continue</Button>
-          </div>
-     )
+class OrderCheckOut extends React.Component {
+     render () {
+          const { ingredients, handleCancle, handleContinue} = this.props;
+          return (
+               <div>
+                    <Burger ingredients={ingredients} />
+                    <Button handleClick={handleCancle} type="primary">Cancle</Button>
+                    <Button handleClick={handleContinue} type="secondary">Continue</Button>
+               </div>
+          )
+     }
 }
-orderCheckOut.prototype = {
-     ingredients : PropType.object,
-     handleClick: PropType.function
-}
-export default orderCheckOut;
+
+export default OrderCheckOut;

@@ -17,8 +17,8 @@ const OrderSummary = ({ ingredients, canclePurchase, continuePurchase, price }) 
 			<ul className="order-summary__list">{orderSummary}</ul>
 			<p className="order-summary__text" >Total Price : {price.toFixed(2)}</p>
 			<div className="order-summary__button-group">
-				<Button name="Cancle" type="primary" handleClick={canclePurchase}/>
-				<Button name="Continue" type="secondary" handleClick={continuePurchase}/>
+				<Button type="primary" handleClick={canclePurchase}>Cancle</Button>
+				<Button type="secondary" handleClick={continuePurchase}>Continue</Button>
 			</div>
 		</React.Fragment>
 	);
