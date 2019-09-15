@@ -1,0 +1,24 @@
+@import '../../Sass/mediaQuery';
+.form {
+     width: 80%;
+     max-width: 60rem;
+     margin: auto;
+     @include responsive (md) {width: 60%; }
+     @include responsive (lg) {width: 100%;}
+     h1 {
+          text-align: center;
+          padding: 1rem 0;
+     }
+     &__container{
+          display: flex;
+          flex-direction: column;
+          @include responsive (lg) {flex-direction: row;}
+     }
+     &__button-group{
+          padding: 2rem 0;
+          text-align: center;
+          button:not(:last-child){
+               margin-right: 4rem;
+          }
+     }
+}

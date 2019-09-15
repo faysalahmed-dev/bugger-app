@@ -1,14 +1,42 @@
 .button {
-     width: 8rem;
-     height: 3.5rem;
-     box-shadow: 0 3px 5px rgba(0,0,0,.4);
+     box-shadow: 0 3px 5px rgba(0,0,0,.2);
      border: none;
      outline: none;
      cursor: pointer;
      color: #fff;
      transition: all .3s;
-     font-size: 1.6rem
 }
+.button:disabled {
+     opacity: .7;
+     background: #6666;
+     &:hover {
+          background: #6666;
+          color: currentColor;
+     }
+}
+.button-sm {
+     font-size: 1.3rem;
+     width: 8rem;
+     height: 3.5rem;
+}
+.button-md {
+     font-size: 1.5rem;
+     width: 10rem;
+     height: 4rem;
+}
+.rounded {
+     border-radius:2rem;
+}
+.primary-outline {
+     border:1px solid rgb(255, 187, 0);
+     background: transparent;
+     color: currentColor;
+     &:hover {
+          background:rgb(255, 187, 0);
+          color: #fff;
+     }
+}
+
 .primary{
      background: rgb(255, 187, 0);
 }

@@ -1,0 +1,48 @@
+$input-font: 1.3rem;
+$invalid: rgb(194, 141, 17);
+@mixin label {
+	font-size: 1rem;
+	transform: translateY(-90%);
+}
+.form {
+	&__input-group {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		padding: 1.3rem 1rem;
+		position: relative;
+		margin-bottom: 1rem;
+	}
+	&__label {
+		position: absolute;
+		font-size: $input-font;
+		padding: .5rem 1rem;
+		transition: all .4s;
+	}
+	&__input {
+		font-size: $input-font;
+		font-family: inherit;
+		display: block;
+		width: 100%;
+		padding: 1.5rem 1rem;
+		outline: none;
+		border: none;
+		border-bottom: 1px solid rgba(0, 0, 0, .7);
+		&:focus ~ label {
+			@include label;
+		}
+	}
+	.invalid {
+		border-bottom: 1px solid $invalid;
+		&-text {
+			color: $invalid;
+			position: absolute;
+			bottom: -10px;
+			font-size: 1.2rem;
+		}
+	}
+	.input-active {
+		@include label;
+	}
+}

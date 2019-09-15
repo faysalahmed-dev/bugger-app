@@ -1,3 +1,5 @@
 .main-section {
-     min-height: 100vh;
+     $navHeight : 77px;
+     min-height: calc(100vh - $navHeight);
+     margin-top: $navHeight;
 }

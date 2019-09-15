@@ -1,10 +1,12 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import './NavigationItems.scss'
 
 const NavigationItems = (props) => (
      <li className="navigation-item">
-          <a href={props.link} className={props.className}>      {props.children}
-          </a>
+          <Link href={props.link} 
+               className={props.className} to="/orders">{props.children}
+          </Link>
      </li>
 )
 
