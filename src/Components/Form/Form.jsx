@@ -1,19 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import axios from '../../axios/http';
+import patten from './regularExprission';
 import FomrInput from './FormInput/FormInput';
 import Button from '../UI/Button/Button';
 import Loader from '../UI/Loader/Loader';
 import './Form.scss';
 
-const patten = {
-	name: /^[a-zA-Z\s]{2,15}$/,
-	email: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-	number: /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4,5})$/,
-	zipcode: /^[0-9]{4,6}$/,
-	city: /^[a-zA-Z\s]{2,10}$/,
-	street: /[\w\W]{2,30}/
-};
-// email formate
 class CheckoutForm extends Component {
 	state = {
 		name: '',
@@ -77,20 +70,17 @@ class CheckoutForm extends Component {
 	};
 	buttonIsDisabled = () => {
 		const { name, email, street, city, zipcode, number } = this.state;
-		const errorInfo = { ...this.state.errorLog };
-		const er = new Set()
-		for (let key in errorInfo) {
-			er.add(errorInfo[key].isError)
-		}
-		const error =
-			er.has(true) ||
-			name === '' ||
-			email === '' ||
-			zipcode === '' ||
-			city === '' ||
-			street === '' ||
-			number === ''
-		this.setState({ buttonDisabled: error })
+		const formError = 
+			Object.values(this.state.errorLog).every(err => err.isError === true)
+		const checkError =
+		formError ||
+		name === '' ||
+		email === '' ||
+		zipcode === '' ||
+		city === '' ||
+		street === '' ||
+		number === ''
+		this.setState({ buttonDisabled: checkError })
 	}
 	validForm = (value, name) => {
 		const reg = patten[name].test(value);
@@ -200,4 +190,12 @@ class CheckoutForm extends Component {
 		);
 	}
 }
-export default CheckoutForm;
+
+const mapStateToProps = state => {
+	return {
+		ingredients: state.ingredients,
+		price: state.price
+	}
+}
+
+export default connect(mapStateToProps)(CheckoutForm);

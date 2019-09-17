@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux'
 import { Route } from 'react-router-dom';
 import OrderCheckOut from '../../Components/Order/OrderCheckOut/OrderCheckOut';
 import Form from '../../Components/Form/Form';
 class CheckOut extends Component {
-	state = {
-		ingredients: {},
-		price: 3.1
-	};
-	componentDidMount() {
+	/*componentDidMount() {
 		// "?bacon=1&cheese=1&meat=1&salad=2"
 		const url = this.props.location.search
 			.substring(1) //'bacon=1&cheese=1&meat=1&salad=2'
@@ -22,7 +19,7 @@ class CheckOut extends Component {
 			}
 		}
           this.setState({ ingredients });
-	}
+	}*/
 	handleCancle = () => {
 		this.props.history.goBack();
 	};
@@ -33,7 +30,7 @@ class CheckOut extends Component {
 		return (
 			<div>
 				<OrderCheckOut
-					ingredients={this.state.ingredients}
+					ingredients={this.props.ingredients}
 					handleClick={this.handleClick}
 					handleCancle={this.handleCancle}
 					handleContinue={this.handleContinue}
@@ -41,12 +38,17 @@ class CheckOut extends Component {
 				<Route
 					exact
 					path={this.props.match.path + '/checkout-form'}
-					render={(props) => (
-						<Form {...props} ingredients={this.state.ingredients} price={this.state.price} />
-					)}
+					component={Form}
 				/>
 			</div>
 		);
 	}
 }
-export default CheckOut;
+const mapStateToProps = state => {
+	return {
+		ingredients: state.ingredients,
+		price: state.price
+	}
+}
+
+export default connect(mapStateToProps)(CheckOut);
