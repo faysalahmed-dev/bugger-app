@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import axios from '../../axios/http';
 import patten from './regularExprission';
 import FomrInput from './FormInput/FormInput';
 import Button from '../UI/Button/Button';
 import Loader from '../UI/Loader/Loader';
+import { checkoutBurger} from '../../Store/Action/ActionCreator/Checkout'
+import axios from '../../axios/http'
+import withError from '../../Hoc/WithErrorHandler/withError'
 import './Form.scss';
 
 class CheckoutForm extends Component {
@@ -56,17 +58,18 @@ class CheckoutForm extends Component {
 					zipcode
 				}
 			};
-			this.setState({ isLoading: true }, () => {
-				axios
-					.post('/orders.json', order)
-					.then(() => {
-						this.setState({ isLoading: false });
-					})
-					.catch(() => {
-						this.setState({ isLoading: false });
-					});
-			});
+			this.setState({isLoading : true}, () => {
+				this.props.checkoutBurger(order, () => {
+					localStorage.removeItem('burger')
+					this.props.history.replace('/')
+					this.setState({isLoading:false})
+				})
+			})
 		}
+	};
+	handleCancle = () => {
+		this.props.history.goBack();
+		localStorage.removeItem('burger')
 	};
 	buttonIsDisabled = () => {
 		const { name, email, street, city, zipcode, number } = this.state;
@@ -94,10 +97,6 @@ class CheckoutForm extends Component {
 			}
 		},this.buttonIsDisabled);
 	};
-
-	handleCancle = () => {
-		this.props.history.goBack();
-	};
 	render() {
 		const { name, email, street, city, zipcode, number, isLoading, buttonDisabled } = this.state;
 		const {
@@ -108,7 +107,6 @@ class CheckoutForm extends Component {
 			zipcode: zipcodeEr,
 			number: numberEr
 		} = this.state.errorLog;
-		
 		return (
 			<div>
 				{isLoading ? (
@@ -191,11 +189,17 @@ class CheckoutForm extends Component {
 	}
 }
 
-const mapStateToProps = state => {
+// const mapStateToProps = ({ burgerBuilder}) => {
+// 	return {
+// 		ingredients: burgerBuilder.ingredients,
+// 		price: burgerBuilder.price,
+// 	}
+// }
+const mapDispatchToProps = dispatch => {
 	return {
-		ingredients: state.ingredients,
-		price: state.price
+		checkoutBurger(order,fn){dispatch(checkoutBurger(order,fn))}
 	}
 }
 
-export default connect(mapStateToProps)(CheckoutForm);
+export default 
+	connect(null,mapDispatchToProps)(withError(CheckoutForm,axios));

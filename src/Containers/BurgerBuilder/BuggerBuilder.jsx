@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import * as actionType from '../../Store/Action';
+import * as buggerAC from '../../Store/Action/ActionCreator/index';
 import Burger from '../../Components/Burger/Burger';
 import BurgerControls from '../../Components/Burger/BurgerControls/BurgerControls';
 import Model from '../../Components/Model/Model';
@@ -11,14 +11,19 @@ import withErrorHandler from '../../Hoc/WithErrorHandler/withError';
 import ErrorMes from '../../Util/ErrorMes';
 
 
+
 class BurgerBuilder extends Component {
 	state = {
 		isPurchasableMode: false,
 		isLoading: false,
-		error: false
 	};
 	continuePurchasable = () => {
 		this.props.history.push('/checkout');
+		// not for long time solution
+		localStorage.setItem('burger',JSON.stringify({
+			ingredients : this.props.ingredients,
+			price : this.props.price
+		}))
 	};
 	purchasableMode = () => {
 		this.setState({ isPurchasableMode: true})
@@ -29,41 +34,42 @@ class BurgerBuilder extends Component {
 	purchaseButtonDisabled = (ings) => 
 		Object.values(ings).reduce((acc, val) => acc + val) > 0;
 
-	/*componentDidMount() {
-		axios.get('/ingredients.json').then((data) => this.setState({ ingredients: data.data })).catch(() => this.setState({error: true}))
-	}*/
+	componentDidMount () {
+		this.props.fatchIngredients()
+	}
 	render() {
-		const {isPurchasableMode, isLoading,error } = this.state;
-		const disabledInfo = {...this.props.ingredients}
-		if (this.props.ingredients) {
+		const {isPurchasableMode, isLoading } = this.state;
+		const { error, ingredients, price, addIngredient, removeIngredient} = this.props
+		const disabledInfo = {...ingredients}
+		if (ingredients) {
 			for (let key in disabledInfo) disabledInfo[key] = disabledInfo[key] <= 0;
 		}
 
 		return (
 			<Fragment>
-				{this.props.ingredients && (
+				{ingredients && (
 					<Model show={isPurchasableMode} handleClick={this.canclePurchasable}>
 						{isLoading ? (
 							<Loader />
 						) : (
 							<OrderSummary
-								ingredients={this.props.ingredients}
+								ingredients={ingredients}
 								canclePurchase={this.canclePurchasable}
 								continuePurchase={this.continuePurchasable}
-								price={this.props.price}
+								price={price}
 							/>
 						)}
 					</Model>
 				)}
 				{this.props.ingredients ? (
 					<Fragment>
-						<Burger ingredients={this.props.ingredients} />
+						<Burger ingredients={ingredients} />
 						<BurgerControls
-							addIngredients={this.props.addIngredients}
-							removeIngredients={this.props.removeIngredients}
+							addIngredients={addIngredient}
+							removeIngredients={removeIngredient}
 							disabled={disabledInfo}
-							price={this.props.price}
-							isPurchasable={this.purchaseButtonDisabled(this.props.ingredients)}
+							price={price}
+							isPurchasable={this.purchaseButtonDisabled(ingredients)}
 							purchasableMode={this.purchasableMode}
 						/>
 					</Fragment>
@@ -77,18 +83,21 @@ class BurgerBuilder extends Component {
 	}
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ burgerBuilder}) => {
 	return {
-		ingredients: state.ingredients,
-		price: state.price
+		ingredients: burgerBuilder.ingredients,
+		price: burgerBuilder.price,
+		error: burgerBuilder.error
 	};
 };
 const mapDispatchToProps = (dispatch) => {
 	return {
-		addIngredients: (ingredient) => dispatch({ type: actionType.ADD_INGREDIENT, ingredient }),
-		removeIngredients: (ingredient) => dispatch({ type: actionType.REMOVE_INGREDIENT, ingredient })
+		addIngredient(ingredient) {dispatch(buggerAC.addIngredient(ingredient))},
+		removeIngredient(ingredient){dispatch(buggerAC.removeIngredient(ingredient))},
+		fatchIngredients() {dispatch(buggerAC.fatchIngredients())},
 	};
 };
 
 // Connect
-export default withErrorHandler(connect(mapStateToProps, mapDispatchToProps)(BurgerBuilder), axios);
+export default 
+withErrorHandler(connect(mapStateToProps, mapDispatchToProps)(BurgerBuilder), axios);
