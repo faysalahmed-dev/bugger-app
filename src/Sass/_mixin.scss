@@ -1,0 +1,10 @@
+@mixin centerItem {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+}
+@mixin positionItem($top,$left) {
+     position: absolute;
+     top: $top;
+     left: $left;
+}

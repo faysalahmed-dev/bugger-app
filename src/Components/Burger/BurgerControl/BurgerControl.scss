@@ -1,4 +1,4 @@
-$button-control: rgb(255, 187, 0);
+
 .burger-control {
      width: 90%;
      max-width: 50rem;
@@ -7,28 +7,14 @@ $button-control: rgb(255, 187, 0);
      align-items: center;
      justify-content: space-between;
      padding: .7rem 0;
+     font-weight: 600;
      &__label {
           font-size: 1.4rem;
-          color: #fff;
+          color: rgba(#000000, .9);
      }
-     &__button {
-          margin-right: 1rem;
-          width: 80px;
-          height: 3.5rem;
-          border: none;
-          outline: none;
-          background: $button-control;
-          color: #fff;
-          cursor: pointer;
-          box-shadow: 0 2px 2px rgba(000,000,000,.2);
-          &:hover,
-          &:active {
-               background:lighten( $button-control, 10% );
-          }
-          &:disabled {
-                background:lighten( $button-control, 15% );
-               opacity: .8;
-               cursor:not-allowed;
+     &__button-group{
+          button:not(:last-child) {
+               margin-right: 1rem;
           }
      }
 }

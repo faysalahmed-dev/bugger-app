@@ -1,0 +1,9 @@
+.form_toggle-btn {
+     background: transparent;
+     border: none;
+     text-decoration: underline;
+     text-transform: capitalize;
+     &:hover {
+          color: #FFBD41;
+     }
+}

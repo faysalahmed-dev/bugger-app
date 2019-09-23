@@ -1,0 +1,19 @@
+.auth__section {
+     min-height: 100vh;
+     display: flex;
+     align-items: center;
+     &-burger {
+          width: 35%;
+          background: linear-gradient(to right,#F9B640 0%, #FFBD41 50%, #fff 50%);
+          height: 100vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          img {
+               width: 60%;
+               margin: auto;
+               height: 60%;
+               display: block;
+          }
+     }
+}

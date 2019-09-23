@@ -1,16 +1,16 @@
+$bg: #FFBD41;
 .button {
      box-shadow: 0 3px 5px rgba(0,0,0,.2);
      border: none;
-     outline: none;
      cursor: pointer;
      color: #fff;
      transition: all .3s;
 }
 .button:disabled {
      opacity: .7;
-     background: #6666;
+     background: rgb(240, 240, 240);
      &:hover {
-          background: #6666;
+          background: rgb(240, 240, 240);;
           color: currentColor;
      }
 }
@@ -24,35 +24,32 @@
      width: 10rem;
      height: 4rem;
 }
-.rounded {
-     border-radius:2rem;
-}
+
 .primary-outline {
-     border:1px solid rgb(255, 187, 0);
+     border: 2px solid rgba(000, 000, 000, .9);
      background: transparent;
      color: currentColor;
      &:hover {
-          background:rgb(255, 187, 0);
+          background:$bg;
+          border-width: 1px;
           color: #fff;
      }
 }
 
 .primary{
-     background: rgb(255, 187, 0);
+     background: $bg;
 }
 .primary:disabled {
      opacity: .7;
-     background: rgba(255, 188, 2, 0.863);
 }
 .primary:hover {
-     background: rgb(255, 198, 42);
+     background: lighten($bg,10);
 }
 .secondary{
      background: rgb(255, 102, 0);
 }
 .secondary:disabled {
      opacity: .7;
-     background: rgba(255, 102, 0, 0.835);
 }
 .secondary:hover {
      background: rgba(253, 131, 50, 0.835)

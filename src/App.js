@@ -1,20 +1,39 @@
-import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import React, { Fragment } from 'react';
+import { connect } from 'react-redux';
+import { Route, Switch, Redirect} from 'react-router-dom';
 import Layout from './Components/Layout/Layout';
 import BurgerBuilder from './Containers/BurgerBuilder/BuggerBuilder';
 import CheckOut from './Containers/CheckOut/CheckOut';
 import Orders from './Containers/Orders/Orders';
+import Authentication from './Containers/Authentication/Authentication';
+import  Logout from "./Containers/Logout/Logout";
 
 import './App.scss';
-function App() {
+function App(props) {
+	let routes;
+	routes = (
+		< Fragment >
+			< Route path="/authentication" exact component={Authentication} />
+			<Route path="/" exact component={BurgerBuilder} />
+			<Redirect to="/" />
+		</ Fragment>
+	)
+	if(props.auth) {
+		routes = (
+			< Fragment >
+				<Route path="/checkout" component={CheckOut} />
+				<Route path="/orders" exact component={Orders} />
+				< Route path="/authentication" exact component={Authentication} />
+				<Route path="/logout" exact component={Logout} />
+				<Route path="/" exact component={BurgerBuilder} />
+			</ Fragment>
+		)
+	}
 	return (
 		<div className="App">
-			 <Layout>
+			<Layout>
 				<Switch>
-					<Route path="/checkout" render={(options) => <CheckOut {...options} />} />
-					<Route path="/orders"  exact render={(options) => <Orders {...options} />} />
-					<Route path="/"  exact render={(options) => <BurgerBuilder       {...options} />} />
-					
+					{routes}
 					<Route
 						render={() => (
 							<div
@@ -35,5 +54,8 @@ function App() {
 		</div>
 	);
 }
+const mapStateToProps = (state) => ({
+	auth: state.auth.token != null
+});
 
-export default App;
+export default connect(mapStateToProps)(App);

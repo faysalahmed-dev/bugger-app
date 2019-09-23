@@ -1,5 +1,9 @@
+@import '../../Sass/mediaQuery';
 .main-section {
-     $navHeight : 77px;
-     min-height: calc(100vh - $navHeight);
-     margin-top: $navHeight;
+     $navHeight : 60px;
+     min-height: 100vh;
+     // padding-top: $navHeight;
+     //background: linear-gradient(to right,#F9B640 0%, #FFBD41 25%, #fff 25%);
+     @include responsive(lg) {
+     }
 }

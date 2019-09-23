@@ -12,7 +12,12 @@ const Control = [
 const BurgerControls = ({ addIngredients, removeIngredients, disabled, price, isPurchasable, purchasableMode }) => {
 	return (
 		<div className="burger-controls">
-			<p className="burger__price">Total Price : {Math.abs(price.toFixed(2))}</p>
+			<p className="burger__price">Total Price  
+				<span>
+					{Math.abs(price.toFixed(2))}
+				</span>
+			</p>
+			<div className="burger-wrapper">
 			{Control.map((cn) => (
 				<BurgerControl
 					label={cn.label}
@@ -23,9 +28,16 @@ const BurgerControls = ({ addIngredients, removeIngredients, disabled, price, is
 					disabled={disabled[cn.type]}
 				/>
 			))}
-			<button onClick={purchasableMode} disabled={!isPurchasable} className="burger__order-button">
-				Order Now
+			<button onClick={purchasableMode} 
+				disabled={!isPurchasable} className="burger__order-button">
+					<span>
+						Order Now
+					</span>
+					<span>
+						${Math.abs(price.toFixed(2))}
+					</span>
 			</button>
+			</div>
 		</div>
 	);
 };

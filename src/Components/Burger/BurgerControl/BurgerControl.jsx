@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '../../UI/Button/ControlButton'
 import './BurgerControl.scss';
 
 const BurgerControl = ({ label, addIngredients, removeIngredients, type, disabled }) => {
@@ -7,13 +8,9 @@ const BurgerControl = ({ label, addIngredients, removeIngredients, type, disable
 	return (
 		<div className="burger-control">
 			<p className="burger-control__label">{label}</p>
-			<div>
-				<button className="burger-control__button" onClick={removeIng} disabled={disabled}>
-					Less
-				</button>
-				<button className="burger-control__button" onClick={addIng}>
-					More
-				</button>
+			<div className="burger-control__button-group">
+				<Button disabled={disabled} handleClick={removeIng}/>
+				<Button clsName='button-plus' handleClick={addIng}/>
 			</div>
 		</div>
 	);

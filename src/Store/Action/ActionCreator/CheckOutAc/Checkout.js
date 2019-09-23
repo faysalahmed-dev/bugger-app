@@ -1,5 +1,5 @@
-import * as actionType from '../ActionType'
-import axios from '../../../axios/http'
+import * as actionType from '../../ActionType'
+import axios from '../../../../axios/http'
 
 const checkoutSuccess = (order) => {
      return {
@@ -9,15 +9,15 @@ const checkoutSuccess = (order) => {
 }
 const checkoutField = () => {
      return {
-          type : actionType.BURGER_CHECKOUT_FIELD,
+          type : actionType.BURGER_CHECKOUT_FAILD,
           error : true
      }
 }
 
-export const checkoutBurger = (order,callBack) => {
+export const checkoutBurger = (order, token,callBack) => {
      return dispatch => {
           axios
-               .post('/orders.json', order)
+               .post('/orders.json?auth='+token, order)
                .then(() => {
                     dispatch(checkoutSuccess(order))
                     callBack()

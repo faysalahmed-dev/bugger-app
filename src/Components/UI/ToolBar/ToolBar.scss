@@ -3,23 +3,24 @@
 $toolbarHeight : 7rem;
 $humbar-size: 4rem;
 $humbar-Height : .4rem;
+$bg-1: #FFBD41;
+$bg-2: #F9B640;
 .toolbar {
      position: fixed;
      top: 0;
      left: 0;
      width: 100%;
-     height: $toolbarHeight;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	background: rgb(197, 158, 29);
      padding: .5rem 1rem;
      z-index: 2000;
+     background: transparent;
 	nav {
           position: fixed;
           top: $toolbarHeight;
           left: 0%;
-          background: rgb(250, 197, 24);
+          background: linear-gradient(to bottom left, $bg-1,$bg-2);
           color: #fff;
           width: 100%;
           max-width: 25rem;

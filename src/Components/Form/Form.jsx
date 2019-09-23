@@ -4,7 +4,7 @@ import patten from './regularExprission';
 import FomrInput from './FormInput/FormInput';
 import Button from '../UI/Button/Button';
 import Loader from '../UI/Loader/Loader';
-import { checkoutBurger} from '../../Store/Action/ActionCreator/Checkout'
+import { checkoutBurger} from '../../Store/Action/ActionCreator/CheckOutAc/Checkout'
 import axios from '../../axios/http'
 import withError from '../../Hoc/WithErrorHandler/withError'
 import './Form.scss';
@@ -47,6 +47,7 @@ class CheckoutForm extends Component {
 		e.preventDefault();
 		if (!buttonDisabled) {
 			const order = {
+				userId: this.props.userId,
 				ingredients: this.props.ingredients,
 				price: this.props.price,
 				customars: {
@@ -59,7 +60,7 @@ class CheckoutForm extends Component {
 				}
 			};
 			this.setState({isLoading : true}, () => {
-				this.props.checkoutBurger(order, () => {
+				this.props.checkoutBurger(order, this.props.token, () => {
 					localStorage.removeItem('burger')
 					this.props.history.replace('/')
 					this.setState({isLoading:false})
@@ -188,18 +189,13 @@ class CheckoutForm extends Component {
 		);
 	}
 }
+const mapStateToProps = state => ({ token: state.auth.token, userId: state.auth.localId})
 
-// const mapStateToProps = ({ burgerBuilder}) => {
-// 	return {
-// 		ingredients: burgerBuilder.ingredients,
-// 		price: burgerBuilder.price,
-// 	}
-// }
-const mapDispatchToProps = dispatch => {
-	return {
-		checkoutBurger(order,fn){dispatch(checkoutBurger(order,fn))}
-	}
-}
+const mapDispatchToProps = dispatch =>({
+		checkoutBurger(order,token,fn){
+			dispatch(checkoutBurger(order,token,fn))
+		}
+	})
 
-export default 
-	connect(null,mapDispatchToProps)(withError(CheckoutForm,axios));
+
+export default connect(mapStateToProps,mapDispatchToProps)(withError(CheckoutForm,axios));

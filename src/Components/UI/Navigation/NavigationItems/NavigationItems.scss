@@ -5,8 +5,7 @@
      }
      a {
           text-decoration: none;
-          color: #e0dfdf;
-          padding: 1rem;
+          color: rgba(0, 0, 0, 0.698);
           display: block;
           margin-right: 0;
           position: relative;
@@ -16,19 +15,19 @@
                position: absolute;
                bottom: 0;
                left: 50%;
-               background: #fff;
+               background: #F9B640;
                width: 0%;
                transform:translateX(-50%); 
                height: 2px;
                transition: all .2s;
           }
           &:hover::before {
-               width: 100%; 
+               width: 105%; 
           }
           &.active{
-              color: #fff;
+              color: #000;
               &::before  {
-                   width: 100%;
+                   width: 105%;
               }
           }
      }

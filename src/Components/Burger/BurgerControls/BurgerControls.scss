@@ -1,33 +1,87 @@
+@import '../../../Sass/mediaQuery';
+@import '../../../Sass/mixin';
 .burger {
 	&-controls {
 		width: 100%;
-		background: rgb(158, 123, 40);
-		padding: 2rem 0;
+		position: relative;
+		background: linear-gradient(to right,#F9B640 0%, #FFBD41 50%, #fff 50%);
+		@include responsive(lg) {
+			width: 50%;
+		}
+	}
+	&-wrapper {
+		background: #fff;
+		@include positionItem(55%,50%);
+		transform: translate(-45%,-50%);
+		border-radius: .7rem;
+		overflow: hidden;
+		width: 25rem;
+		padding: 2rem;
+		box-shadow: 1px 5px 15px 5px rgba(0, 0, 0, 0.4);
 	}
 	&__price {
 		font-size: 1.6rem;
-		text-align: center;
-		color: #fff;
-		padding: .6rem 0;
+		width: 13rem;
+		height: 4rem;
+		border-radius: .4rem;
+		background: #fff;
+		box-shadow: 1px 5px 5px 0px rgba(0, 0, 0, 0.4);
+		@include positionItem(10%, 50%);
+		@include centerItem;
+		transform: translate(-50%, 75%);
+		span {
+			background: rgb(255, 202, 111);
+			width: 3.2rem;
+			height: 3.2rem;
+			@include centerItem;
+			display: inline-flex;
+			border-radius: 50%;
+			margin-left: .4rem;
+			box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.4);
+		}
 	}
 	&__order-button {
 		font-size: 1.6rem;
-		width: 15rem;
-		height: 5rem;
-		background: rgb(19, 76, 114);
-		color: #fff;
-		border: none;
+		width: 13rem;
+		height: 4rem;
+		background: transparent;
+		color: rgba(000, 000, 000, .9);
+		border: 2px solid rgba(000, 000, 000, .9);
 		display: block;
-		box-shadow: 0 3px 5px rgba(000, 000, 000, .3);
+		box-shadow: 0 .2rem .3rem rgba(000, 000, 000, .5);
 		margin: 2rem auto 0;
 		cursor: pointer;
-		transition: all .2s;
+		border-radius: 10rem;
+		position: relative;
+		overflow: hidden;
+		&:hover,&:active{
+			border: 1px solid rgba(000, 000, 000, .9);
+		}
+		&:hover span:last-child,
+		&:active span:first-child {
+			transform: translateY(0);
+		}
+		&:hover span:first-child,
+		&:active span:first-child {
+			transform: translateY(100%);
+		}
+		span {
+			width: 100%;
+			height: 100%;
+			display: block;
+			position: absolute;
+			top: 0;
+			left: 0;
+			@include centerItem;
+			transition: all .4s cubic-bezier(.06,.6,.41,.98);
+			z-index: -1;
+			&:last-child {
+				background:rgb(255, 191, 80);
+				transform: translateY(-100%);
+			}
+		}
 		&:disabled {
 			opacity: .8;
-			background: rgba(55, 146, 206, 0.876);
-		}
-		&:active {
-			transform: scale(.98);
 		}
 	}
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '../../UI/Button/Button';
 import './OrderSummary.scss';
 
-const OrderSummary = ({ ingredients, canclePurchase, continuePurchase, price }) => {
+const OrderSummary = ({ ingredients, canclePurchase, orderCheckOut, price, auth }) => {
 	const orderSummary = Object.keys(ingredients).map((key) => (
 		<li key={key}>
 			<span>{key}</span> : <span>{ingredients[key]}</span>
@@ -18,7 +18,9 @@ const OrderSummary = ({ ingredients, canclePurchase, continuePurchase, price }) 
 			<p className="order-summary__text" >Total Price : {price.toFixed(2)}</p>
 			<div className="order-summary__button-group">
 				<Button type="primary" handleClick={canclePurchase}>Cancle</Button>
-				<Button type="secondary" handleClick={continuePurchase}>Continue</Button>
+				<Button type="secondary" handleClick={orderCheckOut}>
+					{auth ?'Continue': 'SingUp/Login'}
+				</Button>
 			</div>
 		</React.Fragment>
 	);

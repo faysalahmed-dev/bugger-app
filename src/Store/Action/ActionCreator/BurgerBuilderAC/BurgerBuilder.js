@@ -1,14 +1,16 @@
-import * as ActionType from '../ActionType';
-import axios from '../../../axios/http'
+import * as ActionType from '../../ActionType';
+import axios from '../../../../axios/http'
 
 export const addIngredient = ingredient => ({
      type: ActionType.ADD_INGREDIENT,
      ingredient
 })
-export const removeIngredient = ingredient => ({
-     type: ActionType.REMOVE_INGREDIENT,
-     ingredient
-})
+export const removeIngredient = ingredient => {
+     return {
+          type: ActionType.REMOVE_INGREDIENT,
+          ingredient
+     }
+}
 
 const ingredients = ingredients => {
      return {

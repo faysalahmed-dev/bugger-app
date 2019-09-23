@@ -1,6 +1,6 @@
 /* eslint-disable no-fallthrough */
-import * as actionType from '../Action/ActionType'
-import updataObject from "./Utility/Utility";
+import * as actionType from '../../Action/ActionType'
+import updataObject from "../Utility/Utility";
 
 const initialState = {
      orders: [],

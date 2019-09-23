@@ -10,6 +10,10 @@
      height: 30rem;
      @include responsive (lg){
           height: 40rem;
+          display: flex;
+          justify-content: center;
+          flex-direction: column;
+          align-items: center;
      };
 }
 .aleart{
