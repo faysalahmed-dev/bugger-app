@@ -1,5 +1,5 @@
 import updataObject from '../Utility/Utility'
-import ingPrice from '../ingPrice'
+import ingPrice from '../../../Base/ingPrice'
 
 export function addIngredients (state,action) {
      return updataObject(state, {

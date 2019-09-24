@@ -5,15 +5,15 @@
      margin: 7rem auto 0;
      max-width: 50rem;
      width: 90%;
-     max-width: 40rem;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     //max-width: 40rem;
+     //height: 30rem;
+     position: relative;
      overflow: auto;
-     height: 30rem;
      @include responsive (lg){
-          height: 40rem;
-          display: flex;
-          justify-content: center;
-          flex-direction: column;
-          align-items: center;
+          max-height: 40rem;
      };
 }
 .aleart{

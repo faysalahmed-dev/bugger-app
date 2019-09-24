@@ -15,9 +15,11 @@ const Burger = ({ ingredients }) => {
 	if (ingredientsTransform.length === 0) ingredientsTransform = <p className="aleart">please add ingredients</p>;
 	return (
 		<div className="burger">
-			<BurgerIng type="bread-top" />
-			{ingredientsTransform}
-			<BurgerIng type="bread-bottom" />
+			<div>
+				<BurgerIng type="bread-top" />
+				{ingredientsTransform}
+				<BurgerIng type="bread-bottom" />
+			</div>
 		</div>
 	);
 };

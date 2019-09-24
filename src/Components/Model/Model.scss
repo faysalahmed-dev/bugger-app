@@ -1,23 +1,37 @@
 .model {
-     --width: 400px;
+     --width: 900px;
      // --height:320px;
      max-width: var(--width);
      // height: var(--height);
      width: 90%;
      background: #fff;
      color: rgb(0, 0, 0);
-     padding: 1rem 0;
      position: fixed;
      top: 50%;
      left: 50%;
      transform: translate(-50%, -30rem);
      box-shadow: 1rem 1rem 2rem rgba(000,000,000,.4);
-     padding: 1rem 0;
      z-index: 10000;
      opacity: 0;
      visibility: hidden;
      border-radius: .5rem;
      transition: all .3s;
+     display: flex;
+     overflow: hidden;
+     &__burger-icon {
+          background: linear-gradient(to right,#F9B640 0%, #FFBD41 50%, #fff 50%);
+          width: 30%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          img{
+               width: 50%;
+               display: block;
+          }
+     }
+     &__chart {
+          width: 70%;
+     }
 }
 .show {
      transform: translate(-50%,-50%) !important;

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment} from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch, Redirect} from 'react-router-dom';
 import Layout from './Components/Layout/Layout';
@@ -7,13 +7,19 @@ import CheckOut from './Containers/CheckOut/CheckOut';
 import Orders from './Containers/Orders/Orders';
 import Authentication from './Containers/Authentication/Authentication';
 import  Logout from "./Containers/Logout/Logout";
-
 import './App.scss';
+
+//import SusHoc from './Hoc/AsyncComponent/AsyncComponent'
+// const CheckOutAsync = lazy(() => import('./Containers/CheckOut/CheckOut'))
+// const AuthAsync = lazy(() => import('./Containers/Authentication/Authentication'))
+// const OrdersAsync = lazy(() => import('./Containers/Orders/Orders'))
+
+
 function App(props) {
 	let routes;
 	routes = (
 		< Fragment >
-			< Route path="/authentication" exact component={Authentication} />
+			< Route path="/authentication" exact component={Authentication}/>
 			<Route path="/" exact component={BurgerBuilder} />
 			<Redirect to="/" />
 		</ Fragment>
@@ -21,8 +27,8 @@ function App(props) {
 	if(props.auth) {
 		routes = (
 			< Fragment >
-				<Route path="/checkout" component={CheckOut} />
-				<Route path="/orders" exact component={Orders} />
+				<Route path="/checkout" component={CheckOut}/>
+				<Route path="/orders" exact component={Orders}/>
 				< Route path="/authentication" exact component={Authentication} />
 				<Route path="/logout" exact component={Logout} />
 				<Route path="/" exact component={BurgerBuilder} />
