@@ -3,13 +3,13 @@ import BurgerControl from '../BurgerControl/BurgerControl';
 
 import './BurgerControls.scss';
 const Control = [
-	{ type: 'cheese', label: 'Cheese' },
-	{ type: 'meat', label: 'Meat' },
-	{ type: 'salad', label: 'Salad' },
-	{ type: 'bacon', label: 'Bacon' }
+	{ type: 'cheese', label: 'Cheese',max: 3 },
+	{ type: 'meat', label: 'Meat', max: 3 },
+	{ type: 'salad', label: 'Salad', max: 2 },
+	{ type: 'bacon', label: 'Bacon', max:2 }
 ];
 
-const BurgerControls = ({ addIngredients, removeIngredients, disabled, price, isPurchasable, purchasableMode }) => {
+const BurgerControls = ({ addIngredients, removeIngredients, ingredients, price, isPurchasable, purchasableMode }) => {
 	return (
 		<div className="burger-controls">
 			<p className="burger__price">Total Price  
@@ -25,7 +25,8 @@ const BurgerControls = ({ addIngredients, removeIngredients, disabled, price, is
 					addIngredients={addIngredients}
 					removeIngredients={removeIngredients}
 					type={cn.type}
-					disabled={disabled[cn.type]}
+					ing={ingredients[cn.type]}
+					max={cn.max}
 				/>
 			))}
 			<button onClick={purchasableMode} 

@@ -10,6 +10,7 @@ import Loader from '../../Components/UI/Loader/Loader';
 import withErrorHandler from '../../Hoc/WithErrorHandler/withError';
 import ErrorMes from '../../Util/ErrorMes';
 
+
 import './BurgerBuilder.scss'
 
 class BurgerBuilder extends Component {
@@ -46,10 +47,6 @@ class BurgerBuilder extends Component {
 	render() {
 		const { isPurchasableMode, isLoading } = this.state;
 		const { error, ingredients, price, addIngredient, removeIngredient, auth } = this.props;
-		const disabledInfo = { ...ingredients };
-		if (ingredients) {
-			for (let key in disabledInfo) disabledInfo[key] = disabledInfo[key] <= 0;
-		}
 
 		return (
 			<Fragment>
@@ -74,7 +71,7 @@ class BurgerBuilder extends Component {
 						<BurgerControls
 							addIngredients={addIngredient}
 							removeIngredients={removeIngredient}
-							disabled={disabledInfo}
+							ingredients={ingredients}
 							price={price}
 							isPurchasable={this.purchaseButtonDisabled(ingredients)}
 							purchasableMode={this.purchasableMode}

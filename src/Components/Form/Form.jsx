@@ -109,7 +109,7 @@ class CheckoutForm extends Component {
 			number: numberEr
 		} = this.state.errorLog;
 		return (
-			<div>
+			<div className="checkout__form">
 				{isLoading ? (
 					<Loader />
 				) : (

@@ -1,21 +1,18 @@
 import React, { Fragment} from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch, Redirect} from 'react-router-dom';
+
 import Layout from './Components/Layout/Layout';
 import BurgerBuilder from './Containers/BurgerBuilder/BuggerBuilder';
 import CheckOut from './Containers/CheckOut/CheckOut';
 import Orders from './Containers/Orders/Orders';
 import Authentication from './Containers/Authentication/Authentication';
 import  Logout from "./Containers/Logout/Logout";
+import Page404 from './Components/UI/404Page/Page404'
+
 import './App.scss';
 
-//import SusHoc from './Hoc/AsyncComponent/AsyncComponent'
-// const CheckOutAsync = lazy(() => import('./Containers/CheckOut/CheckOut'))
-// const AuthAsync = lazy(() => import('./Containers/Authentication/Authentication'))
-// const OrdersAsync = lazy(() => import('./Containers/Orders/Orders'))
-
-
-function App(props) {
+function App({auth}) {
 	let routes;
 	routes = (
 		< Fragment >
@@ -24,7 +21,7 @@ function App(props) {
 			<Redirect to="/" />
 		</ Fragment>
 	)
-	if(props.auth) {
+	if(auth) {
 		routes = (
 			< Fragment >
 				<Route path="/checkout" component={CheckOut}/>
@@ -39,22 +36,9 @@ function App(props) {
 		<div className="App">
 			<Layout>
 				<Switch>
+					{/* <Route path="/orders" exact component={Orders} /> */}
 					{routes}
-					<Route
-						render={() => (
-							<div
-								style={{
-									width: '100%',
-									height: '100vh',
-									display: 'flex',
-									justifyContent: 'center',
-									alignItems: 'center'
-								}}
-							>
-								<h1>some thing wrong</h1>
-							</div>
-						)}
-					/>
+					<Route component={Page404} />
 				</Switch>
 			</Layout>
 		</div>

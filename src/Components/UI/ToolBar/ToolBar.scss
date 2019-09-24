@@ -16,51 +16,14 @@ $bg-2: #F9B640;
      padding: .5rem 1rem;
      z-index: 2000;
      background: transparent;
+     background: #fff;
+     @include responsive(lg) {
+          background: transparent;
+     };
 	nav {
-          position: fixed;
-          top: $toolbarHeight;
-          left: 0%;
-          background: linear-gradient(to bottom left, $bg-1,$bg-2);
           color: #fff;
-          width: 100%;
-          max-width: 25rem;
-          height: 100%;
-          z-index: 2000;
           transition: all .5s;
-          transform: translate(-105%);
-          @include responsive(lg) {
-               position: static;
-               background: transparent;
-               width: auto;
-               height: auto;
-               transform: translate(0);
-               padding-right: 3rem;
-          };
+          background: transparent;
+          padding-right: 3rem;
      }
-     .checkbox {
-          display: none;
-          &:checked ~ nav {
-               transform: translate(0%);
-          }
-     }
-	.humbar {
-		width: $humbar-size;
-		height: $humbar-size;
-          position: relative;
-          cursor: pointer;
-          @include responsive(lg) {
-               display: none;
-          };
-		div { 
-               @include humbar($humbar-Height,85%);
-			&::before {
-                    content: '';
-				@include humbar((($humbar-size - ($humbar-Height * 3))  / 2));
-			}
-			&::after {
-                    content: '';
-				@include humbar($humbar-size - ($humbar-Height * 3) );
-			}
-		}
-	}
 }

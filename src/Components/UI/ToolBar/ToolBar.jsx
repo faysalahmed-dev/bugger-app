@@ -5,10 +5,6 @@ import Navigation from '../Navigation/Navigation'
 const ToolBar = () => {
      return (
           <header className="toolbar">
-               <input type="checkbox" name="" id="humbar" className="checkbox"/>
-               <label htmlFor="humbar" className="humbar">
-                    <div></div>
-               </label>
                <Logo />
                <nav>
                    <Navigation />

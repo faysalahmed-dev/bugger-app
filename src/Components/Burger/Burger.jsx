@@ -1,4 +1,5 @@
 import React,{memo} from 'react';
+import PropTypes from 'prop-types'
 import BurgerIng from './BurgerIng/BurgerIng';
 import './Burger.scss';
 const Burger = ({ ingredients }) => {
@@ -23,5 +24,9 @@ const Burger = ({ ingredients }) => {
 		</div>
 	);
 };
+Burger.propTypes = {
+	ingredients : PropTypes.object.isRequired
+}
+
 
 export default memo(Burger);

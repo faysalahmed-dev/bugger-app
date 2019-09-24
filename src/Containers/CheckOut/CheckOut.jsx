@@ -1,29 +1,35 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux'
+import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 import OrderCheckOut from '../../Components/Order/OrderCheckOut/OrderCheckOut';
 import Form from '../../Components/Form/Form';
+import './CheckOut.scss';
 class CheckOut extends Component {
-	
+	state ={
+		showButton: true
+	}
 	handleCancle = () => {
 		this.props.history.goBack();
-		localStorage.removeItem('burger')
+		localStorage.removeItem('burger');
 	};
 	handleContinue = () => {
-		this.props.history.replace('/checkout/checkout-form');
+		this.setState({showButton: false}, () => {
+			this.props.history.replace('/checkout/checkout-form');
+		})
 	};
 	render() {
-		const { ingredients,price} = this.props;
-		const ingredientsTest =
-			ingredients || JSON.parse(localStorage.getItem('burger')).ingredients
-		const Testprice = price || JSON.parse(localStorage.getItem('burger')).price
+		const { ingredients, price } = this.props;
+		
+		const ingredientsTest = ingredients || JSON.parse(localStorage.getItem('burger')).ingredients;
+		const Testprice = price || JSON.parse(localStorage.getItem('burger')).price;
 		return (
-			<div>
+			<div className="checkout__container">
 				<OrderCheckOut
 					ingredients={ingredientsTest}
 					handleClick={this.handleClick}
 					handleCancle={this.handleCancle}
 					handleContinue={this.handleContinue}
+					showButton={this.state.showButton}
 				/>
 				<Route
 					exact
@@ -34,6 +40,7 @@ class CheckOut extends Component {
 		);
 	}
 }
+
 const mapStateToProps = ({ burgerBuilder }) => {
 	return {
 		ingredients: burgerBuilder.ingredients,
@@ -42,3 +49,4 @@ const mapStateToProps = ({ burgerBuilder }) => {
 }
 
 export default connect(mapStateToProps)(CheckOut);
+

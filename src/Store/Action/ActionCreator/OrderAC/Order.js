@@ -12,7 +12,7 @@ const fatchOrderFaild = () => {
 		type: actionType.FATCH_ORDER_FAILD
 	};
 };
-export const fatchOrderFormDataBase = (token, userId) => {
+export const fatchOrderFormDataBase = (token, userId,fn) => {
 	const queryParams = `?auth=${token}&orderBy="userId"&equalTo="${userId}"`;
 	return (dispatch) => {
 		axios
@@ -26,7 +26,7 @@ export const fatchOrderFormDataBase = (token, userId) => {
 					});
 				}
 				dispatch(fatchOrderSuccess(orders));
-			})
+			}).then(() => fn())
 			.catch(() => dispatch(fatchOrderFaild()));
 	};
 };

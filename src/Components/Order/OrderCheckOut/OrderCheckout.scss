@@ -1,0 +1,12 @@
+.order-checkout {
+    &__container{
+        flex: 0 0 40%;
+    }
+    &__button-group{
+        text-align: center;
+        padding: 2.5rem 0;
+        button:not(:last-child) {
+            margin-right: 4rem;
+        }
+    }
+}

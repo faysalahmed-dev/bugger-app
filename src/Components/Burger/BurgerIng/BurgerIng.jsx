@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-type';
+import PropTypes from 'prop-types';
 import './BurgerIng.scss';
 import burgerTop from '../../../Assets/images/Burger/burger-top.png';
 import burgerBottom from '../../../Assets/images/Burger/burger-bottom.png';
@@ -58,7 +58,7 @@ const BurgerIng = ({ type }) => {
 	}
 	return ing;
 };
-BurgerIng.prototype = {
+BurgerIng.propTypes = {
 	type: PropTypes.string
 };
 export default BurgerIng;

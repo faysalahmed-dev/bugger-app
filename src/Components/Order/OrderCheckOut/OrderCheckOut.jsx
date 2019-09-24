@@ -1,13 +1,15 @@
 import React from 'react'
 import Burger from '../../Burger/Burger'
 import Button from '../../UI/Button/Button';
-
-function orderCheckOut({ ingredients, handleCancle, handleContinue }) {
+import './OrderCheckout.scss'
+function orderCheckOut({ ingredients, handleCancle, handleContinue,showButton }) {
      return (
-          <div>
+          <div className="order-checkout__container">
                <Burger ingredients={ingredients} />
-               <Button handleClick={handleCancle} type="primary">Cancle</Button>
-               <Button handleClick={handleContinue} type="secondary">Continue</Button>
+               {showButton  && (<div className="order-checkout__button-group">
+                    <Button handleClick={handleCancle} button="primary-outline button-sm" >Cancle</Button>
+                    <Button handleClick={handleContinue} button="primary-outline button-sm" >Continue</Button>
+               </div>)}
           </div>
      )
 }

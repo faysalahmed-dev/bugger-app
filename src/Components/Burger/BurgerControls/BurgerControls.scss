@@ -2,22 +2,30 @@
 @import '../../../Sass/mixin';
 .burger {
 	&-controls {
-		width: 100%;
-		position: relative;
-		background: linear-gradient(to right,#F9B640 0%, #FFBD41 50%, #fff 50%);
+		align-self: stretch;
+		flex-grow: 1;
+		padding: 2rem 0;
+		background: linear-gradient(to right,#F9B640 , #FFBD41);
 		@include responsive(lg) {
+			position: relative;
+			padding:0;
 			width: 50%;
+			background: linear-gradient(to right,#F9B640 0%, #FFBD41 50%, #fff 50%);
+			flex-grow: 0;
 		}
 	}
 	&-wrapper {
 		background: #fff;
-		@include positionItem(55%,50%);
-		transform: translate(-45%,-50%);
 		border-radius: .7rem;
 		overflow: hidden;
 		width: 25rem;
+		margin: auto;
 		padding: 2rem;
 		box-shadow: 1px 5px 15px 5px rgba(0, 0, 0, 0.4);
+		@include responsive(lg) {
+			@include positionItem(55%,50%);
+			transform: translate(-45%,-50%);
+		}
 	}
 	&__price {
 		font-size: 1.6rem;
@@ -25,10 +33,14 @@
 		height: 4rem;
 		border-radius: .4rem;
 		background: #fff;
-		box-shadow: 1px 5px 5px 0px rgba(0, 0, 0, 0.4);
-		@include positionItem(10%, 50%);
+		box-shadow: 1px 5px 15px 5px rgba(0, 0, 0, 0.4);
+		margin:0 auto 2rem;
 		@include centerItem;
-		transform: translate(-50%, 75%);
+		@include responsive(lg) {
+			@include positionItem(10%, 50%);
+			transform: translate(-50%, 75%);
+			box-shadow: 1px 5px 5px 0px rgba(0, 0, 0, 0.4);
+		}
 		span {
 			background: rgb(255, 202, 111);
 			width: 3.2rem;
@@ -68,13 +80,11 @@
 		span {
 			width: 100%;
 			height: 100%;
-			display: block;
 			position: absolute;
 			top: 0;
 			left: 0;
 			@include centerItem;
 			transition: all .4s cubic-bezier(.06,.6,.41,.98);
-			z-index: -1;
 			&:last-child {
 				background:rgb(255, 191, 80);
 				transform: translateY(-100%);

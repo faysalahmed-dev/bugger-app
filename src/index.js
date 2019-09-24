@@ -4,10 +4,12 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
+//all reducers
 import BuggerBuilderReducer from './Store/Reducer/BurgerBuilderReducer/BuggerBuilderReducer';
 import CheckoutReducer from './Store/Reducer/CheckOutReducer/CheckoutReducer';
 import OrderReducer from './Store/Reducer/OrderReducer/OrderReducer';
 import authenticationReudcer from './Store/Reducer/AuthenticationReducer/Authentication';
+
 import App from './App';
 
 import './index.scss';
@@ -20,6 +22,7 @@ const reducers = combineReducers({
 	orders: OrderReducer,
 	auth: authenticationReudcer
 });
+// creact store
 const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)));
 
 const app = (

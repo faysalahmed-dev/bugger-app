@@ -1,19 +1,14 @@
 @import '../../Sass/mediaQuery';
 .burger {
-     padding: .5rem 0;
      text-align: center;
-     margin: 7rem auto 0;
-     max-width: 50rem;
+     margin:8rem auto 3rem;
+     max-width: 40rem;
+     max-height: 40rem;
      width: 90%;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     //max-width: 40rem;
-     //height: 30rem;
      position: relative;
-     overflow: auto;
+     overflow-y: auto;
      @include responsive (lg){
-          max-height: 40rem;
+          margin:auto;
      };
 }
 .aleart{

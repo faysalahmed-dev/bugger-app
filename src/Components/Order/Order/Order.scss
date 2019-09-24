@@ -1,3 +1,61 @@
-.order__item {
-     width:100%;
+.orderList {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+}
+$box-shadow:0px 2px 3px rgba(#000, .4);
+.order{
+     &__item {
+          @extend .orderList;
+          margin: 3rem 1.5rem;
+          &-price {
+               text-align: center;
+               background: #6A2C58;
+               width: 5rem;
+               height: 5rem;
+               line-height:  5rem;
+               border-radius: 50%;
+               color: rgba(255, 255, 255, 0.959);
+               font-size: 1.6rem;
+               box-shadow: $box-shadow;
+          }
+     }
+     &__burger {
+          width: 5rem;
+          border-radius: 50%;
+          height: 5rem;
+          background: #6A2C58;
+          box-shadow: $box-shadow;
+     }
+     &__list {
+          flex: 0 0 60%;
+          display: grid;
+          grid-template-columns: repeat(2,1fr);
+          grid-row-gap: .5rem;
+          grid-column-gap: .8rem;
+          list-style: none;
+          font-size: 1.3rem;
+          &-item {
+               background: #FFBC41;
+               border-radius: 2rem;
+               padding: .2rem .8rem;
+              color: rgb(31, 31, 31);
+               box-shadow: $box-shadow;
+               @extend .orderList;
+               * {
+                    display: inline-block;
+               }
+               &_ing {
+                    text-transform: capitalize;
+               }
+               &_amount {
+                    width: 20px;
+                    height: 20px;
+                    background: #6A2C58;
+                    border-radius: 50%;
+                    color: #fff;
+                    text-align: center;
+               }
+          }
+     }
 }

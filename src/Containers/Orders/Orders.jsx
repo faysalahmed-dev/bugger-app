@@ -6,35 +6,61 @@ import Loader from '../../Components/UI/Loader/Loader';
 import withError from '../../Hoc/WithErrorHandler/withError';
 import ErrorMes from '../../Util/ErrorMes';
 import axios from '../../axios/http';
+import Button from '../../Components/UI/Button/Button'
+
+import './Orders.scss';
 class Orders extends React.Component {
 	state = {
-		checkListLength: 1
+		totalOrders: 1
 	};
 	componentDidMount() {
-		this.props.getOrders(this.props.token, this.props.userId);
-		if (this.props.orders.length === 0) {
-			this.setState({ checkListLength: 0 });
-		}
+		this.props.getOrders(this.props.token, this.props.userId, () => {
+			if (this.props.orders.length === 0) {
+				this.setState({ totalOrders: 0 });
+			}
+		});
+	}
+	handleClick = () => {
+		this.props.history.push('/')
 	}
 	render() {
+		const { totalOrders } = this.state;
 		const { orders, error } = this.props;
 		let content = <Loader />;
-		let meg = <Loader />;
+		let meg;
 		if (error) {
 			content = <ErrorMes height={{ height: '100vh' }} />;
+		}
+		if (this.state.totalOrders === 0) {
+			meg = <p className="orders__nofound">no orders founds</p>;
 		}
 		if (orders.length > 0) {
 			content = orders.map(({ id, ingredients, price }) => (
 				<Order key={id} ingredients={ingredients} price={price} />
 			));
 		}
-		if (this.state.checkListLength === 0) {
-			meg = <p>no orders founds</p>;
-		}
 		return (
-			<div>
-				{/*this.state.checkListLength >= 1 ? content : meg*/}
-				{content}
+			<div className="orders__page">
+				<div className="orders__bg"></div>
+				<div className="orders__list">
+					<h2 className="orders__list-title">
+						<div></div>
+						My <span>Orders</span>
+					</h2>
+					<div className="orders__order">
+						{this.state.totalOrders > 0 ? content : meg}
+					</div>
+					<div className="orders__button-group">
+						<Button button="primary-outline button-sm rounded" type="submit" handleClick={this.props.history.goBack}>
+							Cancle
+                              </Button>
+						<Button
+						handleClick={this.handleClick}
+						button="primary-outline button-sm rounded" type="button">
+							{totalOrders > 0 ? 'Check Out' : 'Build Burger'}
+                              </Button>
+					</div>
+				</div>
 			</div>
 		);
 	}
@@ -48,8 +74,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-	getOrders(token, userId) {
-		dispatch(fatchOrderFormDataBase(token, userId));
+	getOrders(token, userId, callBack) {
+		dispatch(fatchOrderFormDataBase(token, userId,callBack));
 	}
 });
 

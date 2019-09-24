@@ -1,5 +1,11 @@
+@import '../../Sass/mediaQuery';
 .burger-main__conatiner {
      min-height: 100vh;
      display: flex;
-     flex-direction: row-reverse;
+     flex-direction: column;
+     @include responsive (lg) {
+          justify-content: center;
+          align-items: center;
+          flex-direction: row-reverse;
+     }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import PropType from 'prop-type'
+import PropTypes from 'prop-types'
 import './Button.scss'
 const button = ({ handleClick, button,children, ...othersprops}) => (
 	<button onClick={handleClick} 
@@ -8,9 +8,9 @@ const button = ({ handleClick, button,children, ...othersprops}) => (
 		{children}
 	</button>
 );
-button.prototype = {
-	handleClick: PropType.function,
-	type: PropType.string
+button.protoTypes = {
+	handleClick: PropTypes.func,
+	type: PropTypes.string
 }
 
 export default button;
