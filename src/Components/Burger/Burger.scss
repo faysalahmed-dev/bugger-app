@@ -16,3 +16,28 @@
      font-size: 1.6rem;
      font-weight: 600;
 }
+$animation: .5s;
+.fade-enter {
+     opacity: 0;
+     transform: translate(-50px);
+}
+.fade-enter-active {
+     opacity: 1;
+     transform: translate(0);
+     transition: all $animation;
+}
+.fade-exit {
+     opacity: 1;
+}
+.fade-exit-active {
+     opacity: 0;
+     transform: translate(50px);
+     transition: all $animation;
+}
+.burger-enter {
+     opacity: 0;
+}
+.burger-enter-active {
+     opacity: 1;
+     transition: all .5s;
+}

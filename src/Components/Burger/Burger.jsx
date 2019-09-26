@@ -1,4 +1,5 @@
 import React,{memo} from 'react';
+import {CSSTransition,TransitionGroup} from 'react-transition-group'
 import PropTypes from 'prop-types'
 import BurgerIng from './BurgerIng/BurgerIng';
 import './Burger.scss';
@@ -6,7 +7,12 @@ const Burger = ({ ingredients }) => {
 	let ingredientsTransform = Object.keys(ingredients)
 		.map((ingKey) => {
 			return [ ...Array(ingredients[ingKey]) ].map((_, i) => {
-				return <BurgerIng type={ingKey} key={ingKey + i} />;
+				return (
+					<CSSTransition key={ingKey + i} 
+						timeout={500} classNames='fade'>
+						<BurgerIng type={ingKey} />
+					</CSSTransition>
+				);
 			});
 		})
 		.flat();
@@ -16,11 +22,11 @@ const Burger = ({ ingredients }) => {
 	if (ingredientsTransform.length === 0) ingredientsTransform = <p className="aleart">please add ingredients</p>;
 	return (
 		<div className="burger">
-			<div>
+			<TransitionGroup component={null}>
 				<BurgerIng type="bread-top" />
-				{ingredientsTransform}
+					{ingredientsTransform}
 				<BurgerIng type="bread-bottom" />
-			</div>
+			</TransitionGroup>
 		</div>
 	);
 };

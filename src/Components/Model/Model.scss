@@ -1,8 +1,6 @@
 .model {
      --width: 900px;
-     // --height:320px;
      max-width: var(--width);
-     // height: var(--height);
      width: 90%;
      background: #fff;
      color: rgb(0, 0, 0);
@@ -15,7 +13,6 @@
      opacity: 0;
      visibility: hidden;
      border-radius: .5rem;
-     transition: all .3s;
      display: flex;
      overflow: hidden;
      &__burger-icon {
@@ -33,8 +30,29 @@
           width: 70%;
      }
 }
+
 .show {
-     transform: translate(-50%,-50%) !important;
-     opacity: 1 !important;
-     visibility: visible !important;
+   animation: showModel .5s forwards cubic-bezier(0,.86,.62,1.22);
+}
+.model-exit {
+     transform: translate(-50%,-50%);
+     opacity: 1;
+     visibility: visible;
+}
+.model-exit-active {
+    animation: hideModel .3s forwards;
+}
+@keyframes hideModel {
+     100%{
+          transform: translate(-50%, -30rem);
+          opacity: 0;
+          visibility: hidden;
+     }
+}
+@keyframes showModel {
+     100%{
+          transform: translate(-50%,-50%);
+          opacity: 1;
+          visibility: visible;
+     }
 }

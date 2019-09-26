@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
+import {CSSTransition} from 'react-transition-group'
 import * as buggerAC from '../../Store/Action/ActionCreator/index';
 import Burger from '../../Components/Burger/Burger';
 import BurgerControls from '../../Components/Burger/BurgerControls/BurgerControls';
@@ -50,21 +51,22 @@ class BurgerBuilder extends Component {
 
 		return (
 			<Fragment>
-				{ingredients && (
+				<CSSTransition in={isPurchasableMode} timeout={300} classNames='model' mountOnEnter unmountOnExit>
 					<Model show={isPurchasableMode} handleClick={this.canclePurchasable}>
 						{isLoading ? (
 							<Loader />
 						) : (
-							<OrderSummary
-								ingredients={ingredients}
-								auth={auth}
-								price={price}
-								canclePurchase={this.canclePurchasable}
-								orderCheckOut={this.handleCheckOrderOut}
-							/>
-						)}
+								<OrderSummary
+									ingredients={ingredients}
+									auth={auth}
+									price={price}
+									canclePurchase={this.canclePurchasable}
+									orderCheckOut={this.handleCheckOrderOut}
+								/>
+							)}
 					</Model>
-				)}
+				</CSSTransition>
+				
 				{this.props.ingredients ? (
 					<div className="burger-main__conatiner">
 						<Burger ingredients={ingredients} />

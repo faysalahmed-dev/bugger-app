@@ -8,6 +8,8 @@ import Loader from '../../UI/Loader/Loader';
 import { authenticationSingUp } from '../../../Store/Action/ActionCreator/index';
 import { FormToggleButton} from '../../UI/Ui_Uitility/Ui_Uitility'
 
+import './SingUpForm.scss'
+
 class SingUpForm extends Component {
 	state = {
 		name: '',
@@ -83,7 +85,7 @@ class SingUpForm extends Component {
 				{isLoading ? (
 					<Loader />
 				) : (
-					<form className="form" onSubmit={this.handleSubmit}>
+					<form className="form form-singup" onSubmit={this.handleSubmit}>
 							{this.props.auth ? redir : null}
 						<h1>Sing Up</h1>
 						<div className="form__container">
