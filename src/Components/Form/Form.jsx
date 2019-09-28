@@ -109,7 +109,7 @@ class CheckoutForm extends Component {
 			number: numberEr
 		} = this.state.errorLog;
 		return (
-			<div className="checkout__form">
+			<React.Fragment>
 				{isLoading ? (
 					<Loader />
 				) : (
@@ -185,7 +185,7 @@ class CheckoutForm extends Component {
 						</div>
 					</form>
 				)}
-			</div>
+			</React.Fragment>
 		);
 	}
 }

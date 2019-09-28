@@ -4,3 +4,4 @@ add sing in and sing up form also add sing in with google
 
 
 fixed total price bug
+handle form error (sing up or login)

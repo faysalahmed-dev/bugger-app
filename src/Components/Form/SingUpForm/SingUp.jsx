@@ -37,6 +37,7 @@ class SingUpForm extends Component {
 		if (!buttonDisabled) {
 			this.setState({isLoading: true}, () => {
 				this.props.onSubmit(email, password);
+				console.log(email,password)
 			})
 		}
 	};

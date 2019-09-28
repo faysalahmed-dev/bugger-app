@@ -1,3 +1,4 @@
+@import '../../Sass/mediaQuery';
 .model {
      --width: 900px;
      max-width: var(--width);
@@ -17,17 +18,25 @@
      overflow: hidden;
      &__burger-icon {
           background: linear-gradient(to right,#F9B640 0%, #FFBD41 50%, #fff 50%);
-          width: 30%;
-          display: flex;
+          width: 0%;
           justify-content: center;
           align-items: center;
+          display: none;
+          @include responsive (md) {
+               display: flex;
+               width: 20%;
+          }
+          @include responsive (lg) {width: 30%;}
           img{
                width: 50%;
                display: block;
           }
      }
      &__chart {
-          width: 70%;
+          width: 90%;
+          margin:auto;
+          @include responsive (md) {width: 80%;}
+          @include responsive (lg) {width: 70%;}
      }
 }
 

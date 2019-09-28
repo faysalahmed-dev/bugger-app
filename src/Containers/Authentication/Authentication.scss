@@ -1,3 +1,4 @@
+@import '../../Sass/mediaQuery';
 .auth__section {
 	min-height: 100vh;
 	display: flex;
@@ -6,15 +7,25 @@
 		width: 35%;
 		background: linear-gradient(to right, #f9b640 0%, #ffbd41 50%, #fff 50%);
 		height: 100vh;
-		display: flex;
+		display: none;
 		justify-content: center;
 		align-items: center;
 		animation: burger .5s forwards cubic-bezier(0,.86,.63,1.03);
+		@include responsive (md) {
+			display: flex;
+		}
 		img {
 			width: 60%;
 			margin: auto;
 			height: 60%;
 			display: block;
+		}
+	}
+	&__form {
+		width: 80%;
+		margin:auto;
+		@include responsive (md) {
+			width: 75%;
 		}
 	}
 }

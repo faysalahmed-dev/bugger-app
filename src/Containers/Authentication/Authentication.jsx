@@ -21,15 +21,17 @@ class Authentication extends Component {
 				<div className="auth__section-burger">
 					<img src={burgerImg} alt="burger"/>
 				</div>
-				{this.state.singUpPage ? (
-					<CSSTransition in={this.state.singUpPage} timeout={1000} classNames='singup-form' >
-						<SingUpForm handleFormToggle={this.handleFormToggle} history={this.props.history} />
-					</CSSTransition> 
-				) : (
-					<CSSTransition in={this.state.singUpPage} timeout={1000} classNames='login-form' >
-						<LoginForm handleFormToggle={this.handleFormToggle} history={this.props.history} />
-					</CSSTransition>
-				)}
+				<div className="auth__section__form">
+					{this.state.singUpPage ? (
+						<CSSTransition in={this.state.singUpPage} timeout={1000} classNames='singup-form' >
+							<SingUpForm handleFormToggle={this.handleFormToggle} history={this.props.history} />
+						</CSSTransition> 
+					) : (
+						<CSSTransition in={this.state.singUpPage} timeout={1000} classNames='login-form' >
+							<LoginForm handleFormToggle={this.handleFormToggle} history={this.props.history} />
+						</CSSTransition>
+					)}
+				</div>
 			</section>
 		);
 	}

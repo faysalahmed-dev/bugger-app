@@ -1,3 +1,4 @@
+
 .orders{
      &__page {
           height: 100vh;
@@ -16,10 +17,13 @@
           z-index: -10;
      }
      &__list {
-          width: 400px;
+          max-width: 40rem;
+          width: 100%;
           background: #fff;
           box-shadow: 0 10px 10px rgba(#000,.4);
           position: relative;
+          margin-top: 10rem;
+          margin-bottom: 4rem;
           &-title {
                margin: 2.5rem 4rem;
                font-size: 3rem;

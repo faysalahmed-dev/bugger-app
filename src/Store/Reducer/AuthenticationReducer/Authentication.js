@@ -1,11 +1,12 @@
 /* eslint-disable default-case */
 import * as actionType from '../../Action/ActionType';
-import { singInSuccess } from './AuthenticationHelper';
+import { singInSuccess,logout } from './AuthenticationHelper';
 import updataObject from '../Utility/Utility';
 
+const tokenLs = JSON.parse(sessionStorage.getItem('user'))
 const initialState = {
-	token: null,
-	localId: null,
+	token: tokenLs ? tokenLs.token : null,
+	localId: tokenLs ? tokenLs.localId : null,
 	error: false,
 };
 
@@ -16,7 +17,7 @@ const authenticationReudcer = (state = initialState, action) => {
 		case actionType.AUTH_FAILD:
 			return updataObject(state,{error:true});
 		case actionType.LOG_OUT : 
-			return updataObject(state,initialState)
+			return logout(state)
 		default:
 			return state;
 	}

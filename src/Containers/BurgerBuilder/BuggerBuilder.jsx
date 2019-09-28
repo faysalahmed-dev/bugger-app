@@ -16,7 +16,7 @@ import './BurgerBuilder.scss'
 
 class BurgerBuilder extends Component {
 	state = {
-		isPurchasableMode: false,
+		openModel: false,
 		isLoading: false
 	};
 	handleCheckOrderOut = () => {
@@ -34,11 +34,11 @@ class BurgerBuilder extends Component {
 			})
 		);
 	};
-	purchasableMode = () => {
-		this.setState({ isPurchasableMode: true });
+	openModelHandler = () => {
+		this.setState({ openModel: true });
 	};
-	canclePurchasable = () => {
-		this.setState({ isPurchasableMode: false });
+	closeModelHandler = () => {
+		this.setState({ openModel: false });
 	};
 	purchaseButtonDisabled = (ings) => Object.values(ings).reduce((acc, val) => acc + val) > 0;
 
@@ -46,13 +46,13 @@ class BurgerBuilder extends Component {
 		this.props.fatchIngredients();
 	}
 	render() {
-		const { isPurchasableMode, isLoading } = this.state;
+		const { openModel, isLoading } = this.state;
 		const { error, ingredients, price, addIngredient, removeIngredient, auth } = this.props;
 
 		return (
 			<Fragment>
-				<CSSTransition in={isPurchasableMode} timeout={300} classNames='model' mountOnEnter unmountOnExit>
-					<Model show={isPurchasableMode} handleClick={this.canclePurchasable}>
+				<CSSTransition classNames="model" timeout={400} in={openModel} mountOnEnter unmountOnExit>
+					<Model show={openModel} handleClick={this.closeModelHandler}>
 						{isLoading ? (
 							<Loader />
 						) : (
@@ -60,14 +60,13 @@ class BurgerBuilder extends Component {
 									ingredients={ingredients}
 									auth={auth}
 									price={price}
-									canclePurchase={this.canclePurchasable}
+									canclePurchase={this.closeModelHandler}
 									orderCheckOut={this.handleCheckOrderOut}
 								/>
 							)}
 					</Model>
-				</CSSTransition>
-				
-				{this.props.ingredients ? (
+				</CSSTransition>	
+				{ingredients ? (
 					<div className="burger-main__conatiner">
 						<Burger ingredients={ingredients} />
 						<BurgerControls
@@ -76,7 +75,7 @@ class BurgerBuilder extends Component {
 							ingredients={ingredients}
 							price={price}
 							isPurchasable={this.purchaseButtonDisabled(ingredients)}
-							purchasableMode={this.purchasableMode}
+							purchasableMode={this.openModelHandler}
 						/>
 					</div>
 				) : error ? (

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { CSSTransition } from 'react-transition-group'
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 import OrderCheckOut from '../../Components/Order/OrderCheckOut/OrderCheckOut';
@@ -19,7 +20,6 @@ class CheckOut extends Component {
 	};
 	render() {
 		const { ingredients, price } = this.props;
-		
 		const ingredientsTest = ingredients || JSON.parse(localStorage.getItem('burger')).ingredients;
 		const Testprice = price || JSON.parse(localStorage.getItem('burger')).price;
 		return (
@@ -31,12 +31,14 @@ class CheckOut extends Component {
 					handleContinue={this.handleContinue}
 					showButton={this.state.showButton}
 				/>
-				<Route
-					exact
+				<Route exact 
 					path={this.props.match.path + '/checkout-form'}
-					component={(option) => <Form {...option} price={Testprice} ingredients={ingredients} />}
-				/>
-			</div>
+					component={(option) => (
+						<div className="order-checkout__form">
+							<Form {...option} price={Testprice} ingredients={ingredients} />
+						</div>)}
+					/>
+				</div>
 		);
 	}
 }

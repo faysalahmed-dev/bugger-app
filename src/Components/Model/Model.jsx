@@ -11,7 +11,6 @@ class Model extends React.Component {
 		return (
 			<React.Fragment>
                     <BackDrop show={show} handleClick={handleClick} />
-				{/* <div className={`model ${show && 'show'}`}>{children}</div> */}
 				<div className={`model ${show && 'show'}`}>
 					<div className="model__burger-icon">
 						<img src={BurderIcon} alt="burger-icon"/>

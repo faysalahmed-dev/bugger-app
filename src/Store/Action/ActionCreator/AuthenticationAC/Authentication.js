@@ -9,6 +9,7 @@ const authFaild = () => {
 };
 // logout
 export const logout = () => {
+	sessionStorage.removeItem('user')
 	return {
 		type: actionType.LOG_OUT
 	};
@@ -16,6 +17,7 @@ export const logout = () => {
 
 // hanlde auth sing in or login
 const authUser = (token, localId) => {
+	sessionStorage.setItem('user', JSON.stringify({ token, localId }));
 	return {
 		type: actionType.AUTH_USER,
 		token,
@@ -24,9 +26,9 @@ const authUser = (token, localId) => {
 };
 export const authRedirect = () => {
 	return {
-		type: actionType.AUTH_REDIRECT,
-	}
-}
+		type: actionType.AUTH_REDIRECT
+	};
+};
 
 export const authenticationSingUp = (email, password) => {
 	return (dispatch) => {
@@ -39,11 +41,12 @@ export const authenticationSingUp = (email, password) => {
 					returnSecureToken: true
 				}
 			)
-			.then(({ data }) => {
-				dispatch(authUser(data.idToken, data.localId));
-				// dispatch(authRedirect(history));
+			.then((data) => {
+				console.log(data);
+				dispatch(authUser(data.data.idToken, data.data.localId));
 			})
-			.catch(() => {
+			.catch((err) => {
+				console.log(err);
 				dispatch(authFaild());
 			});
 	};
@@ -62,11 +65,10 @@ export const authenticationSingIn = (email, password) => {
 			)
 			.then((data) => {
 				dispatch(authUser(data.data.idToken, data.data.localId));
-				// dispatch(authRedirect(history));
 			})
-			.catch(() => {
-				// console.log('auth faild catch')
-				// dispatch(authFaild());
+			.catch((err) => {
+				console.log(err);
+				dispatch(authFaild());
 			});
 	};
 };
