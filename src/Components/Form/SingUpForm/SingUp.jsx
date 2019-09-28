@@ -89,7 +89,7 @@ class SingUpForm extends Component {
 					<form className="form form-singup" onSubmit={this.handleSubmit}>
 							{this.props.auth ? redir : null}
 						<h1>Sing Up</h1>
-						<div className="form__container">
+						<div className="form-singup__container">
 							<FormInput
 								label="Name"
 								handleChange={this.handleChange}
@@ -109,7 +109,7 @@ class SingUpForm extends Component {
 								meg={emailEr.meg}
 							/>
 						</div>
-						<div className="form__container">
+						<div className="form-singup__container">
 							<FormInput
 								label="Password"
 								handleChange={this.handleChange}
@@ -132,7 +132,7 @@ class SingUpForm extends Component {
 						<FormToggleButton handleClick={this.props.handleFormToggle}>
 							i already have an account
 						</FormToggleButton>
-						<div className="form__button-group">
+						<div className="form-singup__button-group">
 								<Button button="primary-outline button-sm rounded" type="submit" disabled={buttonDisabled}>
 								SingUp
 							</Button>

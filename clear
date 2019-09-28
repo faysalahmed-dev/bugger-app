@@ -1,0 +1,111 @@
+[33mcommit 692afceb09877facc27912ebf048ffe49dc305f1[m[33m ([m[1;36mHEAD -> [m[1;32mconvert_hooks[m[33m, [m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m, [m[1;32mcovert_hooks[m[33m)[m
+Author: Faysal Ahmed <fahadfaysal146@gmail.com>
+Date:   Sat Sep 28 21:04:00 2019 +0600
+
+    add responsive desing
+
+[33mcommit 90ef428f68e68b50b1c50d69939b3942938e544a[m
+Author: Faysal Ahmed <47469289+faysal146@users.noreply.github.com>
+Date:   Fri Sep 27 00:08:28 2019 +0600
+
+    add home page and form animations
+
+[33mcommit 0142b45f710cf75ac6d1ed1621ea7c02689897e3[m
+Author: Faysal Ahmed <47469289+faysal146@users.noreply.github.com>
+Date:   Wed Sep 25 01:52:40 2019 +0600
+
+    finish order page styleing  and add home page responsive desing
+
+[33mcommit 0efcaf45117ccd8eb46186ade8c47947e0d85bab[m
+Author: Faysal Ahmed <47469289+faysal146@users.noreply.github.com>
+Date:   Tue Sep 24 12:30:43 2019 +0600
+
+    add desing
+
+[33mcommit ca3c1b0d15e1d61e885539d7171da88837890a2c[m
+Author: Faysal Ahmed <47469289+faysal146@users.noreply.github.com>
+Date:   Mon Sep 23 17:05:28 2019 +0600
+
+    add singup login and home page desing
+
+[33mcommit cb9724e3999a99acddc54da0b9065e246b891249[m
+Author: Faysal Ahmed <47469289+faysal146@users.noreply.github.com>
+Date:   Fri Sep 20 19:28:53 2019 +0600
+
+    handle async taks in redux
+
+[33mcommit 1103a4a9af71c7311c1b83fb9f220fc99aac1e44[m
+Author: Faysal Ahmed <47469289+faysal146@users.noreply.github.com>
+Date:   Wed Sep 18 00:55:21 2019 +0600
+
+    redux in buger and form to more easy to read
+
+[33mcommit 1f77ddc05fbef00009dd35384703ad6706a7e682[m
+Author: Faysal Ahmed <47469289+faysal146@users.noreply.github.com>
+Date:   Tue Sep 17 17:43:51 2019 +0600
+
+    add redux to the project
+
+[33mcommit ea17b417b48661682f0da9f75fb307b95c522d7f[m
+Author: Faysal Ahmed <47469289+faysal146@users.noreply.github.com>
+Date:   Sun Sep 15 14:03:41 2019 +0600
+
+    add form with fill valid future
+
+[33mcommit 5cc9b31d9201220043bfeb09467ba0f734471bbe[m
+Merge: 6799d63 e03499c
+Author: Faysal Ahmed <47469289+faysal146@users.noreply.github.com>
+Date:   Fri Sep 13 02:56:40 2019 +0600
+
+    Merge branch 'master' of https://github.com/faysal146/bugger-app
+
+[33mcommit 6799d6330fd6f5128f520d3c896297aeef2ab87f[m
+Author: Faysal Ahmed <47469289+faysal146@users.noreply.github.com>
+Date:   Fri Sep 13 02:55:37 2019 +0600
+
+    add checkout page routing
+
+[33mcommit e03499ccbcaeafab9a2d1ca697534877d466832d[m
+Merge: f647125 e37aeaa
+Author: Faysal Ahmed <47469289+faysal146@users.noreply.github.com>
+Date:   Thu Sep 12 23:59:54 2019 +0600
+
+    Merge pull request #1 from faysal146/get-data-firebase
+    
+    Get data firebase
+
+[33mcommit e37aeaaf770e046a500d23e6757e53d8ed72657f[m[33m ([m[1;31morigin/get-data-firebase[m[33m, [m[1;32mget-data-firebase[m[33m)[m
+Author: Faysal Ahmed <47469289+faysal146@users.noreply.github.com>
+Date:   Thu Sep 12 23:53:14 2019 +0600
+
+    add some responsive style
+
+[33mcommit 3888068afd8dedc83f62e8cfa4a1e95c7b6eac4e[m
+Author: Faysal Ahmed <47469289+faysal146@users.noreply.github.com>
+Date:   Thu Sep 12 02:14:24 2019 +0600
+
+    get data from firebase add some loader
+
+[33mcommit f6471252625337480f4baa20678b25128931eafd[m
+Author: Faysal Ahmed <47469289+faysal146@users.noreply.github.com>
+Date:   Thu Sep 12 00:49:38 2019 +0600
+
+    add firebase as backend data base with post request
+
+[33mcommit 6ae88d39dd7bbd129c8ef3de123656633ac20bc4[m
+Author: Faysal Ahmed <47469289+faysal146@users.noreply.github.com>
+Date:   Tue Sep 10 20:08:39 2019 +0600
+
+    performace optimiziation
+
+[33mcommit 6a9f1e9a047ee65003450e3d005e08c32d0cb5c9[m
+Author: Faysal Ahmed <47469289+faysal146@users.noreply.github.com>
+Date:   Tue Sep 10 19:20:07 2019 +0600
+
+     after finish first section
+
+[33mcommit fbbedd9a43e2b8d0ac1e68be9b2192da6cef951f[m
+Author: Faysal Ahmed <47469289+faysal146@users.noreply.github.com>
+Date:   Sun Sep 8 03:01:04 2019 +0600
+
+    bugger app

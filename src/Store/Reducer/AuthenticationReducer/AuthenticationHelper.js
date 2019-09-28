@@ -15,3 +15,9 @@ export function singInSuccess (state,action) {
           error: false
      })
 }
+
+export function authRedirect (state,action) {
+     return updataObject(state, {
+          toPath: action.to
+     })
+}

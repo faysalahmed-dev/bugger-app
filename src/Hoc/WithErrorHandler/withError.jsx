@@ -1,38 +1,36 @@
-import React from 'react';
+import React, {useState,useEffect} from 'react';
 import Model from '../../Components/Model/Model';
 import ErrorMeg from '../../Util/ErrorMes'
 
 const withErrorHadler = (WrapperComponent, axios) => {
-	return class extends React.Component {
-		state = {
-			error: null
-		};
-		componentDidMount() {
-			axios.interceptors.request.use((res) => {
-				this.setState({ error: null });
-				return res;
-			});
-			axios.interceptors.response.use(
-				(res) => res,
-				(error) => {
-					this.setState({ error });
-				}
-			);
-		}
-		handleClick = () => {
-               this.setState({ error: null })
-          };
+	return props => {
+		const [error,setError] = useState(null)
+		const reqInter = axios.interceptors.request.use((res) => {
+			setError(null);
+			return res;
+		});
+		const resInter = axios.interceptors.response.use((res) => res,
+			(error) => setError(error)
+		);
+	
+		useEffect(() => {
+			return () => {
+				axios.interceptors.request.eject(reqInter)
+				axios.interceptors.request.eject(resInter)
+			};
+		}, [reqInter,resInter])
+		
 
-		render() {
-			return (
-				<React.Fragment>
-					<Model show={this.state.error} handleClick={this.handleClick}>
-						<ErrorMeg />
-					</Model>
-					<WrapperComponent {...this.props} />
-				</React.Fragment>
-			);
-		}
+		const handleClick = () => setError(null)
+
+		return (
+			<React.Fragment>
+				<Model show={error} handleClick={handleClick}>
+					<ErrorMeg />
+				</Model>
+				<WrapperComponent {...props} />
+			</React.Fragment>
+		);
 	};
 };
 export default withErrorHadler;

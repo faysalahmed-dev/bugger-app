@@ -24,9 +24,10 @@ const authUser = (token, localId) => {
 		localId
 	};
 };
-export const authRedirect = () => {
+export const authRedirect = (to) => {
 	return {
-		type: actionType.AUTH_REDIRECT
+		type: actionType.AUTH_REDIRECT,
+		toPath: to
 	};
 };
 

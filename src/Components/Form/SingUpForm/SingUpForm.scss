@@ -1,5 +1,25 @@
+@import '../../../Sass/mediaQuery';
 .form-singup{
+     // width: 90%;
+     // max-width: 50rem;
+     // margin:auto;
      animation: burgerForm 1s forwards cubic-bezier(0,.86,.62,1.22);
+     // h1 {
+     //      text-align: center;
+     //      padding: 1rem 0;
+     // }
+     // &__container{
+     //      display: flex;
+     //      flex-direction: column;
+     //      @include responsive (lg) {flex-direction: row;}
+     // }
+     // &__button-group{
+     //      padding: 2rem 0;
+     //      text-align: center;
+     //      button:not(:last-child){
+     //           margin-right: 4rem;
+     //      }
+     // }
 }
 @keyframes burgerForm {
      0% {

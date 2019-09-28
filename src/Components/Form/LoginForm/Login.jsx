@@ -8,7 +8,7 @@ import Loader from '../../UI/Loader/Loader';
 import { authenticationSingIn, authRedirect } from '../../../Store/Action/ActionCreator/index'
 import { FormToggleButton } from '../../UI/Ui_Uitility/Ui_Uitility'
 
-
+import './LoginForm.scss';
 
 class logInForm extends Component {
      state = {
@@ -58,23 +58,28 @@ class logInForm extends Component {
                }
           }, this.buttonIsDisabled);
      };
+     authRedir = () => {
+          if (localStorage.getItem('burger')) {
+               
+          }else {
+
+          }
+     }
      render() {
           const { email, password, isLoading, buttonDisabled } = this.state;
           const {email: emailEr,password: passwordEr} = this.state.errorLog;
 
           let redir = <Redirect to="/" />
-          if (localStorage.getItem('burger')) {
-               redir = <Redirect to="/checkout" />
-          }
+         
           return (
                <React.Fragment>
                     {isLoading ? (
                          <Loader />
                     ) : (
-                              <form className="form" onSubmit={this.handleSubmit}>
+                              <form className="form-login" onSubmit={this.handleSubmit}>
                                    {this.props.auth ? redir : null}
                                    <h1>Log In</h1>
-                                   <div className="form__container">
+                                   <div className="form-login__container">
                                         <FormInput
                                              label="Email"
                                              handleChange={this.handleChange}
@@ -85,7 +90,7 @@ class logInForm extends Component {
                                              meg={emailEr.meg}
                                         />
                                    </div>
-                                   <div className="form__container">
+                                   <div className="form-login__container">
                                         <FormInput
                                              label="Password"
                                              handleChange={this.handleChange}
@@ -99,7 +104,7 @@ class logInForm extends Component {
                                    <FormToggleButton handleClick={this.props.handleFormToggle}>
                                         i don't have an account
 						     </FormToggleButton>
-                                   <div className="form__button-group">
+                                   <div className="form-login__button-group">
                                         <Button button="primary-outline button-sm rounded" type="submit" disabled={buttonDisabled}>
                                              Log In
                                         </Button>
@@ -120,8 +125,8 @@ const mapDispatchToProps = dispatch =>({
           onSubmit(email, password) {
                dispatch(authenticationSingIn(email, password))
           },
-          onAuthRedirect() {
-               dispatch(authRedirect())
+          onAuthRedirect(to) {
+               dispatch(authRedirect(to))
           }
      })
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(logInForm));
